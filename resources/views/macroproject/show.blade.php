@@ -1,6 +1,5 @@
 @extends('layout.index')
 
 @section('content')
-    <h1>Welcome</h1>
-    <p>let's start</p>
+    <h1>{{ $macroproject->macroproject_name }}</h1>
 @endsection
