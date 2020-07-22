@@ -6,7 +6,7 @@
     @csrf
     @method('PUT')
         <div class="form-row">
-            <label>Macroproject's name</label>
+            <label>Macroproject's Name</label>
             <input type="text" name="macroproject_name" class="form-control" value="{{ $macroproject->macroproject_name }}">
         </div>
         <div class="form-row">
