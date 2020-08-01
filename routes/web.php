@@ -29,3 +29,7 @@ Route::delete('macroproject/{macroproject}', '\App\Modules\Macroproject\Macropro
 /* Route::get('project', function () {
     return 'Projects';
 })->name('project.index'); */
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
