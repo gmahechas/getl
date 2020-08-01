@@ -1,9 +1,9 @@
-@extends('layout.index')
+@extends('layouts.app')
 
 @section('content')
     <h1>Macroprojects's List</h1>
 
-    <a href="{{ route('macroproject.create') }}" class="btn btn-success">Create</a>
+    <a href="{{ route('macroproject.create') }}" class="btn btn-success mb-3">Create</a>
 
     @empty($macroprojects)
         <div class="alert alert-warning">
@@ -26,7 +26,7 @@
                                 <td>
                                     <a href="{{ route('macroproject.show', ['macroproject' => $macroproject->id]) }}" class="btn btn-link">Show</a>
                                     <a href="{{ route('macroproject.edit', ['macroproject' => $macroproject->id]) }}" class="btn btn-link">Edit</a>
-                                    <form method="POST" action="{{ route('macroproject.destroy', ['macroproject' => $macroproject->id]) }}">
+                                    <form method="POST" class="d-inline" action="{{ route('macroproject.destroy', ['macroproject' => $macroproject->id]) }}">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-link">Delete</button>
