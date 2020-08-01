@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         Schema::disableForeignKeyConstraints();
         $this->call(MacroprojectSeeder::class);
+        $this->call(ProjectSeeder::class);
         Schema::enableForeignKeyConstraints();
     }
 }

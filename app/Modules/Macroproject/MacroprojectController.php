@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class MacroprojectController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         return view('macroproject.index')->with([
@@ -14,50 +19,76 @@ class MacroprojectController extends Controller
         ]);
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         return view('macroproject.create');
     }
 
-    public function store()
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(MacroprojectRequest $request)
     {
-        $rules = [
-            'macroproject_name' => ['required', 'max:255']
-        ];
-        request()->validate($rules);
-        $entity = Macroproject::create(request()->all());
+        $entity = Macroproject::create($request->validated());
         return redirect()->route('macroproject.index')->with(['success' => "The macroproject {$entity->macroproject_name} was created"]);
     }
 
-    public function show($macroproject)
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Modules\Macroproject\Macroproject  $macroproject
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Macroproject $macroproject)
     {
         return view('macroproject.show')->with([
-            'macroproject' => Macroproject::findOrFail($macroproject)
+            'macroproject' => $macroproject
         ]);
     }
 
-    public function edit($macroproject)
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Modules\Macroproject\Macroproject  $macroproject
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Macroproject $macroproject)
     {
         return view('macroproject.edit')->with([
-            'macroproject' => Macroproject::findOrFail($macroproject)
+            'macroproject' => $macroproject
         ]);
     }
 
-    public function update($macroproject)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Modules\Macroproject\Macroproject  $macroproject
+     * @return \Illuminate\Http\Response
+     */
+    public function update(MacroprojectRequest $request, Macroproject $macroproject)
     {
-        $rules = [
-            'macroproject_name' => ['required', 'max:255']
-        ];
-        request()->validate($rules);
-        $entity = Macroproject::findOrFail($macroproject);
-        $entity->update(request()->all());
-        return redirect()->route('macroproject.index')->with(['success' => "The macroproject {$entity->macroproject_name} was updated"]);;
+        $macroproject->update($request->validated());
+        return redirect()->route('macroproject.index')->with(['success' => "The macroproject {$macroproject->macroproject_name} was updated"]);;
     }
 
-    public function destroy($macroproject)
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Modules\Macroproject\Macroproject  $macroproject
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Macroproject $macroproject)
     {
-        $entity = Macroproject::findOrFail($macroproject);
-        $entity->delete();
-        return redirect()->route('macroproject.index')->with(['success' => "The macroproject {$entity->macroproject_name} was destroyed"]);
+        $macroproject->delete();
+        return redirect()->route('macroproject.index')->with(['success' => "The macroproject {$macroproject->macroproject_name} was destroyed"]);
     }
 }
