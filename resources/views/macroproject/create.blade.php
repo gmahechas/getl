@@ -1,4 +1,4 @@
-@extends('layout.index')
+@extends('layouts.app')
 
 @section('content')
     <h1>Create Macrocroproject</h1>
@@ -8,7 +8,7 @@
             <label>Macroproject's name</label>
             <input type="text" name="macroproject_name" class="form-control" value="{{ old('macroproject_name') }}">
         </div>
-        <div class="form-row">
+        <div class="form-row mt-3">
             <button type="submit" class="btn btn-primary btn-lg">Save</button>
         </div>
     </form>
