@@ -15,7 +15,7 @@ class MacroprojectController extends Controller
     public function index()
     {
         return view('macroproject.index')->with([
-            'macroprojects' => Macroproject::all()
+            'entities' => Macroproject::all()
         ]);
     }
 
