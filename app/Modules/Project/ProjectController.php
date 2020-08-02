@@ -14,7 +14,9 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return Project::all();
+        return view('project.index')->with([
+            'projects' => Project::all()
+        ]);
     }
 
     /**
@@ -24,7 +26,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('project.create');
     }
 
     /**
@@ -33,9 +35,10 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProjectRequest $request)
     {
-        //
+        $entity = Project::create($request->validated());
+        return redirect()->route('project.index')->with(['success' => "The project {$entity->project_name} was created"]);
     }
 
     /**
@@ -46,7 +49,9 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
+        return view('project.show')->with([
+            'project' => $project
+        ]);
     }
 
     /**
@@ -57,7 +62,9 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return view('project.edit')->with([
+            'project' => $project
+        ]);
     }
 
     /**
@@ -67,9 +74,10 @@ class ProjectController extends Controller
      * @param  \App\Modules\Project\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Project $project)
+    public function update(ProjectRequest $request, Project $project)
     {
-        //
+        $project->update($request->validated());
+        return redirect()->route('project.index')->with(['success' => "The project {$project->project_name} was updated"]);;
     }
 
     /**
@@ -80,6 +88,7 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+        return redirect()->route('project.index')->with(['success' => "The project {$project->project_name} was destroyed"]);
     }
 }

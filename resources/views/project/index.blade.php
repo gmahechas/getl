@@ -3,13 +3,13 @@
 @section('content')
     <div class="row">
         <div class="col-4">
-            <h2>Macroprojects's List</h2>
+            <h2>Projects's List</h2>
         </div>
         <div class="col-8">
-            <a href="{{ route('macroproject.create') }}" class="btn btn-success">Create</a>
+            <a href="{{ route('project.create') }}" class="btn btn-success">Create</a>
         </div>
     </div>
-    @empty($macroprojects)
+    @empty($projects)
         <div class="alert alert-warning">
             There are not product
         </div>
@@ -19,18 +19,18 @@
                 <thead class="thead-dark">
                     <tr>
                         <th>Id</th>
-                        <th>Macroproject</th>
+                        <th>Project</th>
                         <th>Actions</th>
                     </tr>
                     <tbody>
-                        @foreach ($macroprojects as $macroproject)
+                        @foreach ($projects as $project)
                             <tr>
-                                <td>{{ $macroproject->id }}</td>
-                                <td>{{ $macroproject->macroproject_name }}</td>
+                                <td>{{ $project->id }}</td>
+                                <td>{{ $project->project_name }}</td>
                                 <td>
-                                    <a href="{{ route('macroproject.show', ['macroproject' => $macroproject->id]) }}" class="btn btn-sm btn-primary">Show</a>
-                                    <a href="{{ route('macroproject.edit', ['macroproject' => $macroproject->id]) }}" class="btn btn-sm btn-primary">Edit</a>
-                                    <form method="POST" class="d-inline" action="{{ route('macroproject.destroy', ['macroproject' => $macroproject->id]) }}">
+                                    <a href="{{ route('project.show', ['project' => $project->id]) }}" class="btn btn-sm btn-primary">Show</a>
+                                    <a href="{{ route('project.edit', ['project' => $project->id]) }}" class="btn btn-sm btn-primary">Edit</a>
+                                    <form method="POST" class="d-inline" action="{{ route('project.destroy', ['project' => $project->id]) }}">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm btn-primary">Delete</button>
