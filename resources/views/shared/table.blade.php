@@ -11,16 +11,8 @@
             <tr>
                 @foreach ($columns as $column)
                     {{-- the field are not actions --}}
-                    @if ($column['field'][0] !== '__actions__')
-                        {{-- check eager loader --}}
-                        @switch(count($column['field']))
-                            @case(1)
-                                <td>{{ $entity->{$column['field'][0]} }}</td>
-                                @break
-                            @case(2)
-                                <td>{{ $entity->{$column['field'][0]}->{$column['field'][1]} }}</td>
-                                @break
-                        @endswitch
+                    @if ($column['field'] !== '__actions__')
+                        <td>{{ $entity->{$column['field']} }}</td>
                     @else
                         {{-- the field are actions --}}
                         <td>
