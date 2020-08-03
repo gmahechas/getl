@@ -1,32 +1,32 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Editar Proyecto: {{ $project->project_name }}</h1>
-    <form method="POST" action="{{ route('project.update', ['project' => $project->id]) }}">
+    <h1>Editar Proyecto: {{ $entity->project_name }}</h1>
+    <form method="POST" action="{{ route('project.update', ['project' => $entity->id]) }}">
     @csrf
     @method('PUT')
         <div class="form-row">
             <label>Portafolio</label>
             <select name="macroproject_id" class="form-control">
                 @foreach ($macroprojects as $macroproject)
-                    <option value="{{ $macroproject->id }}" {{ $macroproject->id === $project->macroproject_id ? 'selected' : '' }}>{{ $macroproject->macroproject_name }}</option>
+                    <option value="{{ $macroproject->id }}" {{ $macroproject->id === $entity->macroproject_id ? 'selected' : '' }}>{{ $macroproject->macroproject_name }}</option>
                 @endforeach
             </select>
         </div>
         <div class="form-row">
             <label>Id Ref</label>
-            <input type="text" name="id_ref" class="form-control" value="{{ $project->id_ref }}">
+            <input type="text" name="id_ref" class="form-control" value="{{ $entity->id_ref }}">
         </div>
         <div class="form-row">
             <label>Proyecto</label>
-            <input type="text" name="project_name" class="form-control" value="{{ $project->project_name }}">
+            <input type="text" name="project_name" class="form-control" value="{{ $entity->project_name }}">
         </div>
         <div class="form-row">
             <label>Financiamiento</label>
-            <input type="text" name="project_financing" class="form-control" value="{{ $project->project_financing }}">
+            <input type="text" name="project_financing" class="form-control" value="{{ $entity->project_financing }}">
         </div>
         <div class="form-row mt-3">
-            <button type="submit" class="btn btn-success btn-sm">Save</button>
+            <button type="submit" class="btn btn-success btn-sm">Guardar</button>
         </div>
     </form>
 @endsection

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProjectViewTable extends Migration
+class CreateChapterViewTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,12 +14,12 @@ class CreateProjectViewTable extends Migration
     public function up()
     {
         DB::statement('
-        CREATE OR REPLACE VIEW project_view AS
+        CREATE OR REPLACE VIEW chapter_view AS
             SELECT
-                p.*,
-                m.macroproject_name
-            FROM project p
-            JOIN macroproject m ON m.id = p.macroproject_id
+                c.*,
+                p.project_name
+            FROM chapter c
+            JOIN project p ON p.id = c.project_id
         ');
     }
 
@@ -30,6 +30,6 @@ class CreateProjectViewTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('project_view');
+        Schema::dropIfExists('chapter_view');
     }
 }

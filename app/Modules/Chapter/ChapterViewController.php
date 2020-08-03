@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Modules\Project;
+namespace App\Modules\Chapter;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ProjectViewController extends Controller
+class ChapterViewController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,21 +14,21 @@ class ProjectViewController extends Controller
      */
     public function index()
     {
-        return view('project.index')->with([
-            'entities' => ProjectView::all()
+        return view('chapter.index')->with([
+            'entities' => ChapterView::all()
         ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Modules\Project\ProjectView  $project
+     * @param  \App\Modules\Chapter\ChapterView  $chapterView
      * @return \Illuminate\Http\Response
      */
-    public function show(ProjectView $project)
+    public function show(ChapterView $chapter)
     {
-        return view('project.show')->with([
-            'entity' => $project
+        return view('chapter.show')->with([
+            'entity' => $chapter
         ]);
     }
 }

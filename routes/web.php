@@ -17,12 +17,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth'])->group(function () {
+/* Route::middleware(['auth'])->group(function () { */
     Route::resource('macroproject', '\App\Modules\Macroproject\MacroprojectController');
 
     Route::resource('project', '\App\Modules\Project\ProjectController')->except(['index', 'show']);
     Route::resource('project', '\App\Modules\Project\ProjectViewController')->only(['index', 'show']);
-});
+
+    Route::resource('chapter', '\App\Modules\Chapter\ChapterController')->except(['index', 'show']);
+    Route::resource('chapter', '\App\Modules\Chapter\ChapterViewController')->only(['index', 'show']);
+/* }); */
 
 Auth::routes();
 

@@ -52,7 +52,7 @@ class ProjectController extends Controller
     public function show(Project $project)
     {
         return view('project.show')->with([
-            'project' => $project
+            'entity' => $project
         ]);
     }
 
@@ -66,7 +66,7 @@ class ProjectController extends Controller
     {
         $macroprojects = Macroproject::all(['id', 'macroproject_name']);
         return view('project.edit')->with([
-            'project' => $project,
+            'entity' => $project,
             'macroprojects' => $macroprojects
         ]);
     }
@@ -81,7 +81,7 @@ class ProjectController extends Controller
     public function update(ProjectRequest $request, Project $project)
     {
         $project->update($request->validated());
-        return redirect()->route('project.index')->with(['success' => "The project {$project->project_name} was updated"]);;
+        return redirect()->route('project.index')->with(['success' => "The project {$project->project_name} was updated"]);
     }
 
     /**

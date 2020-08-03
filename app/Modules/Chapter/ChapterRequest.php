@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Modules\Project;
+namespace App\Modules\Chapter;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProjectRequest extends FormRequest
+class ChapterRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,9 +25,9 @@ class ProjectRequest extends FormRequest
     {
         return [
             'id_ref' => ['required'],
-            'project_name' => ['required', 'max:255'],
-            'project_financing' => ['required'],
-            'macroproject_id' => ['required']
+            'chapter_name' => ['required', 'max:255'],
+            'chapter_budgeted' => ['required'],
+            'project_id' => ['required']
         ];
     }
 }

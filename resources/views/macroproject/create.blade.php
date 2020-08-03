@@ -13,7 +13,7 @@
             <input type="text" name="macroproject_name" class="form-control" value="{{ old('macroproject_name') }}">
         </div>
         <div class="form-row mt-3">
-            <button type="submit" class="btn btn-success btn-sm">Save</button>
+            <button type="submit" class="btn btn-success btn-sm">Guardar</button>
         </div>
     </form>
 @endsection

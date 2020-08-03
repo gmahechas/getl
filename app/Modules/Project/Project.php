@@ -8,14 +8,9 @@ class Project extends Model
 {
     protected $table = 'project';
     protected $fillable = [
-        'project_name',
         'id_ref',
+        'project_name',
         'project_financing',
         'macroproject_id'
     ];
-
-    public function macroproject()
-    {
-		return $this->belongsTo(\App\Modules\Macroproject\Macroproject::class);
-	}
 }

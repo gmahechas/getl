@@ -50,7 +50,7 @@ class MacroprojectController extends Controller
     public function show(Macroproject $macroproject)
     {
         return view('macroproject.show')->with([
-            'macroproject' => $macroproject
+            'entity' => $macroproject
         ]);
     }
 
@@ -63,7 +63,7 @@ class MacroprojectController extends Controller
     public function edit(Macroproject $macroproject)
     {
         return view('macroproject.edit')->with([
-            'macroproject' => $macroproject
+            'entity' => $macroproject
         ]);
     }
 
