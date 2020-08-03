@@ -15,6 +15,7 @@ class CreateMacroprojectTable extends Migration
     {
         Schema::create('macroproject', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('id_ref')->unsigned();
             $table->string('macroproject_name', 128);
             $table->timestamps();
         });

@@ -24,7 +24,8 @@ class MacroprojectRequest extends FormRequest
     public function rules()
     {
         return [
-            'macroproject_name' => ['required', 'max:255']
+            'macroproject_name' => ['required', 'max:255'],
+            'id_ref' => ['required'],
         ];
     }
 }

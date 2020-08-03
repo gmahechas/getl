@@ -6,7 +6,11 @@
     @csrf
     @method('PUT')
         <div class="form-row">
-            <label>Macroproject's Name</label>
+            <label>Id Ref</label>
+            <input type="text" name="id_ref" class="form-control" value="{{ $macroproject->id_ref }}">
+        </div>
+        <div class="form-row">
+            <label>Portafolio</label>
             <input type="text" name="macroproject_name" class="form-control" value="{{ $macroproject->macroproject_name }}">
         </div>
         <div class="form-row mt-3">

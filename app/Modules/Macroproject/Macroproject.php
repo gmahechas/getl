@@ -8,7 +8,8 @@ class Macroproject extends Model
 {
     protected $table = 'macroproject';
     protected $fillable = [
-        'macroproject_name'
+        'macroproject_name',
+        'id_ref'
     ];
 
     public function projects()

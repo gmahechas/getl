@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col-4">
-            <h2>Macroprojects's List</h2>
+            <h2>Portafolios</h2>
         </div>
         <div class="col-8">
             <a href="{{ route('macroproject.create') }}" class="btn btn-success">Create</a>
@@ -18,15 +18,15 @@
             'model' => 'macroproject',
             'columns' => [
                 '1' => [
-                    'head' => 'Id',
-                    'field' => 'id'
+                    'head' => 'Id Ref',
+                    'field' => 'id_ref'
                 ],
                 '2' => [
-                    'head' => 'Macroproject',
+                    'head' => 'Portafolio',
                     'field' => 'macroproject_name'
                 ],
                 '3' => [
-                    'head' => 'Actions',
+                    'head' => 'Acciones',
                     'field' => '__actions__'
                 ]
             ]

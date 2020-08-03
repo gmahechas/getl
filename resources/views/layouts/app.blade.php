@@ -35,7 +35,7 @@
                     <ul class="navbar-nav mr-auto">
                         @auth
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('macroproject.index') }}">Macroproject's</a>
+                                <a class="nav-link" href="{{ route('macroproject.index') }}">Portafolios</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('project.index') }}">Project's</a>
