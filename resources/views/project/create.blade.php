@@ -5,8 +5,12 @@
     <form method="POST" action="{{ route('project.store') }}">
     @csrf
         <div class="form-row">
-            <label>Id Portafolio</label>
-            <input type="text" name="macroproject_id" class="form-control" value="{{ old('macroproject_id') }}">
+            <label>Portafolio</label>
+            <select name="macroproject_id" class="form-control">
+                @foreach ($macroprojects as $macroproject)
+                    <option value="{{ $macroproject->id }}">{{ $macroproject->macroproject_name }}</option>
+                @endforeach
+            </select>
         </div>
         <div class="form-row">
             <label>Proyecto</label>

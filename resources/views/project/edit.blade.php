@@ -7,7 +7,11 @@
     @method('PUT')
         <div class="form-row">
             <label>Portafolio</label>
-            <input type="text" name="macroproject_id" class="form-control" value="{{ $project->macroproject_id }}">
+            <select name="macroproject_id" class="form-control">
+                @foreach ($macroprojects as $macroproject)
+                    <option value="{{ $macroproject->id }}" {{ $macroproject->id === $project->macroproject_id ? 'selected' : '' }}>{{ $macroproject->macroproject_name }}</option>
+                @endforeach
+            </select>
         </div>
         <div class="form-row">
             <label>Proyecto</label>

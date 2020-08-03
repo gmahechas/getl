@@ -4,6 +4,7 @@ namespace App\Modules\Project;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Modules\Macroproject\Macroproject;
 
 class ProjectController extends Controller
 {
@@ -26,7 +27,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('project.create');
+        $macroprojects = Macroproject::all(['id', 'macroproject_name']);
+        return view('project.create')->with(['macroprojects' => $macroprojects]);
     }
 
     /**
@@ -62,8 +64,10 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
+        $macroprojects = Macroproject::all(['id', 'macroproject_name']);
         return view('project.edit')->with([
-            'project' => $project
+            'project' => $project,
+            'macroprojects' => $macroprojects
         ]);
     }
 
