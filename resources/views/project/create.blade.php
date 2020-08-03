@@ -13,6 +13,10 @@
             <input type="text" name="project_name" class="form-control" value="{{ old('project_name') }}">
         </div>
         <div class="form-row">
+            <label>Id Ref</label>
+            <input type="text" name="id_ref" class="form-control" value="{{ old('id_ref') }}">
+        </div>
+        <div class="form-row">
             <label>Financiamiento</label>
             <input type="text" name="project_financing" class="form-control" value="{{ old('project_financing') }}">
         </div>
