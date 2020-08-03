@@ -3,10 +3,10 @@
 @section('content')
     <div class="row">
         <div class="col-4">
-            <h2>Projects's List</h2>
+            <h2>Proyectos</h2>
         </div>
         <div class="col-8">
-            <a href="{{ route('project.create') }}" class="btn btn-success">Create</a>
+            <a href="{{ route('project.create') }}" class="btn btn-success">Crear</a>
         </div>
     </div>
     @empty($entities)
@@ -18,19 +18,23 @@
                 'model' => 'project',
                 'columns' => [
                     '1' => [
-                        'head' => 'Id',
-                        'field' => 'id'
+                        'head' => 'Id Ref',
+                        'field' => 'id_ref'
                     ],
                     '2' => [
-                        'head' => 'Project',
+                        'head' => 'Proyecto',
                         'field' => 'project_name'
                     ],
                     '3' => [
-                        'head' => 'Macroproject',
+                        'head' => 'Portafolio',
                         'field' => 'macroproject_name'
                     ],
                     '4' => [
-                        'head' => 'Actions',
+                        'head' => 'Financiamiento',
+                        'field' => 'project_financing'
+                    ],
+                    '5' => [
+                        'head' => 'Acciones',
                         'field' => '__actions__'
                     ]
                 ]

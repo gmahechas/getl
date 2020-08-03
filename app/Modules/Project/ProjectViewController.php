@@ -18,4 +18,17 @@ class ProjectViewController extends Controller
             'entities' => ProjectView::all()
         ]);
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Modules\Project\Project  $project
+     * @return \Illuminate\Http\Response
+     */
+    public function show(ProjectView $project)
+    {
+        return view('project.show')->with([
+            'project' => $project
+        ]);
+    }
 }

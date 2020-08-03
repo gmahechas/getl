@@ -6,7 +6,7 @@
             <h2>Portafolios</h2>
         </div>
         <div class="col-8">
-            <a href="{{ route('macroproject.create') }}" class="btn btn-success">Create</a>
+            <a href="{{ route('macroproject.create') }}" class="btn btn-success">Crear</a>
         </div>
     </div>
     @empty($entities)

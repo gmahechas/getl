@@ -19,8 +19,9 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('macroproject', '\App\Modules\Macroproject\MacroprojectController');
-    Route::resource('project', '\App\Modules\Project\ProjectController')->except(['index']);
-    Route::get('project', '\App\Modules\Project\ProjectViewController@index')->name('project.index');
+
+    Route::resource('project', '\App\Modules\Project\ProjectController')->except(['index', 'show']);
+    Route::resource('project', '\App\Modules\Project\ProjectViewController')->only(['index', 'show']);
 });
 
 Auth::routes();

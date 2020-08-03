@@ -9,6 +9,8 @@ class Project extends Model
     protected $table = 'project';
     protected $fillable = [
         'project_name',
+        'id_ref',
+        'project_financing',
         'macroproject_id'
     ];
 

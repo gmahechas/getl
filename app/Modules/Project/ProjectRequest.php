@@ -25,6 +25,8 @@ class ProjectRequest extends FormRequest
     {
         return [
             'project_name' => ['required', 'max:255'],
+            'id_ref' => ['required'],
+            'project_financing' => ['required'],
             'macroproject_id' => ['required']
         ];
     }

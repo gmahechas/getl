@@ -38,7 +38,7 @@
                                 <a class="nav-link" href="{{ route('macroproject.index') }}">Portafolios</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('project.index') }}">Project's</a>
+                                <a class="nav-link" href="{{ route('project.index') }}">Proyectos</a>
                             </li>
                         @endauth
                     </ul>

@@ -16,12 +16,12 @@
                     @else
                         {{-- the field are actions --}}
                         <td>
-                            <a href="{{ route("$model.show", ["$model" => $entity->id]) }}" class="btn btn-sm btn-primary">Show</a>
-                            <a href="{{ route("$model.edit", ["$model" => $entity->id]) }}" class="btn btn-sm btn-primary">Edit</a>
+                            <a href="{{ route("$model.show", ["$model" => $entity->id]) }}" class="btn btn-sm btn-primary">Ver</a>
+                            <a href="{{ route("$model.edit", ["$model" => $entity->id]) }}" class="btn btn-sm btn-primary">Editar</a>
                             <form method="POST" class="d-inline" action="{{ route("$model.destroy", ["$model" => $entity->id]) }}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-primary">Delete</button>
+                                <button type="submit" class="btn btn-sm btn-primary">Eliminar</button>
                             </form>
                         </td>
                     @endif
