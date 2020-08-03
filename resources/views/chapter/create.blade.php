@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>Crear Lote de Trabajo</h1>
-    <form method="POST" action="{{ route('project.store') }}">
+    <form method="POST" action="{{ route('chapter.store') }}">
     @csrf
         <div class="form-row">
             <label>Proyecto</label>
