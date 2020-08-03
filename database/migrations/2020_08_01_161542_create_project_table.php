@@ -15,8 +15,8 @@ class CreateProjectTable extends Migration
     {
         Schema::create('project', function (Blueprint $table) {
             $table->id();
-            $table->string('project_name', 128);
             $table->bigInteger('id_ref')->unsigned();
+            $table->string('project_name', 128);
             $table->decimal('project_financing', 16, 2);
 
             $table->bigInteger('macroproject_id')->unsigned();
