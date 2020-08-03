@@ -5,11 +5,10 @@
 use Faker\Generator as Faker;
 
 $factory->define(\App\Modules\Project\Project::class, function (Faker $faker) {
-    $macroproject = \App\Modules\Macroproject\Macroproject::all()->random();
     return [
         'project_name' => $faker->name,
-        'id_ref' => $macroproject->id_ref,
+        'id_ref' => $faker->numberBetween(1, 20),
         'project_financing' => $faker->randomFloat(NULL, 0, NULL),
-        'macroproject_id' => $macroproject->id
+        'macroproject_id' => \App\Modules\Macroproject\Macroproject::all()->random()->id
     ];
 });
