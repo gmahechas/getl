@@ -11,4 +11,9 @@ class Project extends Model
         'project_name',
         'macroproject_id'
     ];
+
+    public function macroproject()
+    {
+		return $this->belongsTo(\App\Modules\Macroproject\Macroproject::class);
+	}
 }

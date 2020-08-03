@@ -19,15 +19,19 @@
                 'columns' => [
                     '1' => [
                         'head' => 'Id',
-                        'field' => 'id'
+                        'field' => ['id']
                     ],
                     '2' => [
                         'head' => 'Project',
-                        'field' => 'project_name'
+                        'field' => ['project_name']
                     ],
                     '3' => [
+                        'head' => 'Macroproject',
+                        'field' => ['macroproject', 'macroproject_name']
+                    ],
+                    '4' => [
                         'head' => 'Actions',
-                        'field' => '__actions__'
+                        'field' => ['__actions__']
                     ]
                 ]
             ])

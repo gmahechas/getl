@@ -10,4 +10,9 @@ class Macroproject extends Model
     protected $fillable = [
         'macroproject_name'
     ];
+
+    public function projects()
+    {
+		return $this->hasMany(\App\Modules\Project\Project::class);
+	}
 }

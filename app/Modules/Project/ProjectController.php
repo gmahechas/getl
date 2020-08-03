@@ -14,8 +14,9 @@ class ProjectController extends Controller
      */
     public function index()
     {
+        $projects = Project::with('macroproject')->get();
         return view('project.index')->with([
-            'entities' => Project::all()
+            'entities' => $projects
         ]);
     }
 
