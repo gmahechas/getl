@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateActivityTable extends Migration
+class CreateContractTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,16 @@ class CreateActivityTable extends Migration
      */
     public function up()
     {
-        Schema::create('activity', function (Blueprint $table) {
+        Schema::create('contract', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('id_ref')->unsigned();
-            $table->text('activity_name');
-            $table->decimal('activity_budgeted', 16, 2);
+            $table->string('contract_provider', 128);
+            $table->decimal('contract_budgeted', 16, 2);
 
-            $table->bigInteger('chapter_id')->unsigned();
-            $table->foreign('chapter_id')
+            $table->bigInteger('activity_id')->unsigned();
+            $table->foreign('activity_id')
                 ->references('id')
-                ->on('chapter')
+                ->on('activity')
                 ->onDelete('restrict')
                 ->onUpdate('restrict');
             $table->timestamps();
@@ -36,6 +36,6 @@ class CreateActivityTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('activities');
+        Schema::dropIfExists('contracts');
     }
 }

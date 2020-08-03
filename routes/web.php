@@ -28,6 +28,9 @@ Route::get('/', function () {
 
     Route::resource('activity', '\App\Modules\Activity\ActivityController')->except(['index', 'show']);
     Route::resource('activity', '\App\Modules\Activity\ActivityViewController')->only(['index', 'show']);
+
+    Route::resource('contract', '\App\Modules\Contract\ContractController')->except(['index', 'show']);
+    Route::resource('contract', '\App\Modules\Contract\ContractViewController')->only(['index', 'show']);
 /* }); */
 
 Auth::routes();
