@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call(MacroprojectSeeder::class);
         $this->call(ProjectSeeder::class);
         $this->call(ChapterSeeder::class);
+        $this->call(ActivitySeeder::class);
         Schema::enableForeignKeyConstraints();
     }
 }

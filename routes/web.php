@@ -25,6 +25,9 @@ Route::get('/', function () {
 
     Route::resource('chapter', '\App\Modules\Chapter\ChapterController')->except(['index', 'show']);
     Route::resource('chapter', '\App\Modules\Chapter\ChapterViewController')->only(['index', 'show']);
+
+    Route::resource('activity', '\App\Modules\Activity\ActivityController')->except(['index', 'show']);
+    Route::resource('activity', '\App\Modules\Activity\ActivityViewController')->only(['index', 'show']);
 /* }); */
 
 Auth::routes();
