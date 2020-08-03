@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Edit Macrocroproject</h1>
+    <h1>Editar Portafolio</h1>
     <form method="POST" action="{{ route('macroproject.update', ['macroproject' => $macroproject->id]) }}">
     @csrf
     @method('PUT')
