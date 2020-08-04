@@ -8,12 +8,7 @@ class Macroproject extends Model
 {
     protected $table = 'macroproject';
     protected $fillable = [
-        'macroproject_name',
-        'id_ref'
+        'id_ref',
+        'macroproject_name'
     ];
-
-    public function projects()
-    {
-		return $this->hasMany(\App\Modules\Project\Project::class);
-	}
 }
