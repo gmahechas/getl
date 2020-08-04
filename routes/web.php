@@ -31,6 +31,9 @@ Route::get('/', function () {
 
     Route::resource('contract', '\App\Modules\Contract\ContractController')->except(['index', 'show']);
     Route::resource('contract', '\App\Modules\Contract\ContractViewController')->only(['index', 'show']);
+
+    Route::resource('invoice', '\App\Modules\Invoice\InvoiceController')->except(['index', 'show']);
+    Route::resource('invoice', '\App\Modules\Invoice\InvoiceViewController')->only(['index', 'show']);
 /* }); */
 
 Auth::routes();

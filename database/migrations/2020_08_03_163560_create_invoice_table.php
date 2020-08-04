@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateContractTable extends Migration
+class CreateInvoiceTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,18 @@ class CreateContractTable extends Migration
      */
     public function up()
     {
-        Schema::create('contract', function (Blueprint $table) {
+        Schema::create('invoice', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('id_ref')->unsigned();
-            $table->string('contract_provider', 128);
-            $table->decimal('contract_budgeted', 16, 2);
+            $table->string('invoice_number', 128);
+            $table->date('invoice_date');
+            $table->text('invoice_responsable');
+            $table->decimal('invoice_total', 16, 2);
 
-            $table->bigInteger('activity_id')->unsigned();
-            $table->foreign('activity_id')
+            $table->bigInteger('contract_id')->unsigned();
+            $table->foreign('contract_id')
                 ->references('id')
-                ->on('activity')
+                ->on('contract')
                 ->onDelete('restrict')
                 ->onUpdate('restrict');
             $table->timestamps();
@@ -36,6 +38,6 @@ class CreateContractTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contract');
+        Schema::dropIfExists('invoice');
     }
 }

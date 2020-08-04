@@ -49,6 +49,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('contract.index') }}">Contratos</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('invoice.index') }}">Facturas</a>
+                            </li>
                         {{-- @endauth --}}
                     </ul>
 
