@@ -16,7 +16,7 @@
                 </div>
                 <div class="form-row">
                     <label>Fecha</label>
-                    <input type="date" name="invoice_date" class="form-control" value="{{ old('invoice_date') }}">
+                    <input type="text" name="invoice_date" class="form-control" value="{{ old('invoice_date') }}">
                 </div>
                 <div class="form-row">
                     <label>Responsable</label>

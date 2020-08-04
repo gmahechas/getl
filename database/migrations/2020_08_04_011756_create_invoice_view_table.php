@@ -17,6 +17,7 @@ class CreateInvoiceViewTable extends Migration
         CREATE OR REPLACE VIEW invoice_view AS
             SELECT
                 i.*,
+                c.id_ref AS contract_id_ref,
                 c.contract_provider
             FROM invoice i
             JOIN contract c ON c.id = i.contract_id

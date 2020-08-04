@@ -19,6 +19,15 @@
             <div class="form-row">
                 <div><strong>Total: </strong>{{ $entity->invoice_total }}</div>
             </div>
+            <div class="form-row">
+                <div><strong>Proveedor: </strong>{{ $entity->contract_provider }}</div>
+            </div>
+            <div class="form-row">
+                <div><strong>Contrato: </strong>{{ $entity->contract_id_ref }}</div>
+            </div>
+            <div class="form-row mt-3">
+                <a href="{{ route('invoice.index') }}" class="btn btn-secondary btn-sm">Regresar</a>
+            </div>
         </div>
     </div>
 

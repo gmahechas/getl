@@ -42,6 +42,10 @@
                         'field' => 'contract_provider'
                     ],
                     '7' => [
+                        'head' => 'Contrato',
+                        'field' => 'contract_id_ref'
+                    ],
+                    '8' => [
                         'head' => 'Acciones',
                         'field' => '__actions__'
                     ]
