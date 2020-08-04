@@ -11,7 +11,7 @@
                 <div><strong>Portafolio: </strong>{{ $entity->macroproject_name }}</div>
             </div>
             <div class="form-row">
-                <div><strong>Financiamiento: </strong>{{ $entity->project_financing }}</div>
+                <div><strong>Financiamiento: </strong>{{ number_format($entity->project_financing, 2) }}</div>
             </div>
             <div class="form-row">
                 <a href="{{ route('project.index') }}" class="btn btn-secondary btn-sm">Regresar</a>

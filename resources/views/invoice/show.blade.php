@@ -17,7 +17,7 @@
                 <div><strong>Responsable: </strong>{{ $entity->invoice_responsable }}</div>
             </div>
             <div class="form-row">
-                <div><strong>Total: </strong>{{ $entity->invoice_total }}</div>
+                <div><strong>Total: </strong>{{ number_format($entity->invoice_total, 2) }}</div>
             </div>
             <div class="form-row">
                 <div><strong>Proveedor: </strong>{{ $entity->contract_provider }}</div>

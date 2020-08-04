@@ -11,7 +11,7 @@
                 <div><strong>Actividad: </strong>{{ $entity->activity_name }}</div>
             </div>
             <div class="form-row">
-                <div><strong>Presupuesto: </strong>{{ $entity->activity_budgeted }}</div>
+                <div><strong>Presupuesto: </strong>{{ number_format($entity->activity_budgeted, 2) }}</div>
             </div>
             <div class="form-row">
                 <div><strong>Lote de Trabajo: </strong>{{ $entity->chapter_name }}</div>

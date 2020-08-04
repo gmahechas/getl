@@ -11,7 +11,7 @@
                 <div><strong>Proveedor: </strong>{{ $entity->contract_provider }}</div>
             </div>
             <div class="form-row">
-                <div><strong>Valor Contrato: </strong>{{ $entity->contract_budgeted }}</div>
+                <div><strong>Valor Contrato: </strong>{{ number_format($entity->contract_budgeted, 2) }}</div>
             </div>
             <div class="form-row">
                 <div><strong>Actividad: </strong>{{ $entity->activity_name }}</div>

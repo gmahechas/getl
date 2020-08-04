@@ -11,7 +11,7 @@
                 <div><strong>Lote de Trabajo: </strong>{{ $entity->chapter_name}}</div>
             </div>
             <div class="form-row">
-                <div><strong>Presupuesto: </strong>{{ $entity->chapter_budgeted }}</div>
+                <div><strong>Presupuesto: </strong>{{ number_format($entity->chapter_budgeted, 2) }}</div>
             </div>
             <div class="form-row">
                 <div><strong>Proyecto: </strong>{{ $entity->project_name }}</div>
