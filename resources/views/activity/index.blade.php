@@ -26,12 +26,12 @@
                         'field' => 'activity_name'
                     ],
                     '3' => [
-                        'head' => 'Lote de Trabajo',
-                        'field' => 'chapter_name'
-                    ],
-                    '4' => [
                         'head' => 'Presupuesto',
                         'field' => 'activity_budgeted'
+                    ],
+                    '4' => [
+                        'head' => 'Lote de Trabajo',
+                        'field' => 'chapter_name'
                     ],
                     '5' => [
                         'head' => 'Acciones',

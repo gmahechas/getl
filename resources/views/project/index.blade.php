@@ -26,12 +26,12 @@
                         'field' => 'project_name'
                     ],
                     '3' => [
-                        'head' => 'Portafolio',
-                        'field' => 'macroproject_name'
-                    ],
-                    '4' => [
                         'head' => 'Financiamiento',
                         'field' => 'project_financing'
+                    ],
+                    '4' => [
+                        'head' => 'Portafolio',
+                        'field' => 'macroproject_name'
                     ],
                     '5' => [
                         'head' => 'Acciones',

@@ -26,6 +26,7 @@ class InvoiceRequest extends FormRequest
         return [
             'id_ref' => ['required'],
             'invoice_number' => ['required'],
+            'invoice_date' => ['required'],
             'invoice_responsable' => ['required'],
             'invoice_total' => ['required'],
             'contract_id' => ['required']

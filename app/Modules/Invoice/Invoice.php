@@ -16,4 +16,8 @@ class Invoice extends Model
         'invoice_total',
         'contract_id'
     ];
+
+    protected $dates = [
+        'invoice_date',
+    ];
 }

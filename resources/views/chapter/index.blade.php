@@ -26,12 +26,12 @@
                         'field' => 'chapter_name'
                     ],
                     '3' => [
-                        'head' => 'Proyecto',
-                        'field' => 'project_name'
-                    ],
-                    '4' => [
                         'head' => 'Presupuesto',
                         'field' => 'chapter_budgeted'
+                    ],
+                    '4' => [
+                        'head' => 'Proyecto',
+                        'field' => 'project_name'
                     ],
                     '5' => [
                         'head' => 'Acciones',
