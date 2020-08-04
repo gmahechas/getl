@@ -17,7 +17,6 @@ class CreateMacroprojectTable extends Migration
             $table->id();
             $table->bigInteger('id_ref')->unsigned();
             $table->string('macroproject_name', 128);
-            $table->timestamps();
         });
     }
 

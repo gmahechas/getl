@@ -25,7 +25,6 @@ class CreateActivityTable extends Migration
                 ->on('chapter')
                 ->onDelete('restrict')
                 ->onUpdate('restrict');
-            $table->timestamps();
         });
     }
 

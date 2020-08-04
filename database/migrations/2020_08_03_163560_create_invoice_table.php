@@ -27,7 +27,6 @@ class CreateInvoiceTable extends Migration
                 ->on('contract')
                 ->onDelete('restrict')
                 ->onUpdate('restrict');
-            $table->timestamps();
         });
     }
 

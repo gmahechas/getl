@@ -25,7 +25,6 @@ class CreateChapterTable extends Migration
                 ->on('project')
                 ->onDelete('restrict')
                 ->onUpdate('restrict');
-            $table->timestamps();
         });
     }
 

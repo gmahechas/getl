@@ -25,7 +25,6 @@ class CreateContractTable extends Migration
                 ->on('activity')
                 ->onDelete('restrict')
                 ->onUpdate('restrict');
-            $table->timestamps();
         });
     }
 

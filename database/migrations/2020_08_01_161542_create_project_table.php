@@ -25,7 +25,6 @@ class CreateProjectTable extends Migration
                 ->on('macroproject')
                 ->onDelete('restrict')
                 ->onUpdate('restrict');
-            $table->timestamps();
         });
     }
 
