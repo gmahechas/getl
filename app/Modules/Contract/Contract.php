@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Contract extends Model
 {
+    public $timestamps = false;
     protected $table = 'contract';
     protected $fillable = [
         'id_ref',
