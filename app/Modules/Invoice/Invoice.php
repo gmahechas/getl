@@ -12,7 +12,6 @@ class Invoice extends Model
         'id_ref',
         'invoice_number',
         'invoice_date',
-        'invoice_responsable',
         'invoice_total',
         'contract_id'
     ];

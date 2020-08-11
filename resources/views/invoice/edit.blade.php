@@ -20,10 +20,6 @@
                     <input type="text" name="invoice_date" class="form-control" value="{{ $entity->invoice_date }}">
                 </div>
                 <div class="form-row">
-                    <label>Responsable</label>
-                    <input type="text" name="invoice_responsable" class="form-control" value="{{ $entity->invoice_responsable }}">
-                </div>
-                <div class="form-row">
                     <label>Total</label>
                     <input type="text" name="invoice_total" class="form-control" value="{{ $entity->invoice_total }}">
                 </div>

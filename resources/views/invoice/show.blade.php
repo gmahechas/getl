@@ -14,9 +14,6 @@
                 <div><strong>Fecha: </strong>{{ $entity->invoice_date }}</div>
             </div>
             <div class="form-row">
-                <div><strong>Responsable: </strong>{{ $entity->invoice_responsable }}</div>
-            </div>
-            <div class="form-row">
                 <div><strong>Total: </strong>{{ number_format($entity->invoice_total, 2) }}</div>
             </div>
             <div class="form-row">

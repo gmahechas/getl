@@ -11,7 +11,6 @@ class InvoiceView extends Model
         'id_ref',
         'invoice_number',
         'invoice_date',
-        'invoice_responsable',
         'invoice_total',
         'contract_id',
         'contract_id_ref',

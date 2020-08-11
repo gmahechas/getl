@@ -30,22 +30,18 @@
                         'field' => 'invoice_date'
                     ],
                     '4' => [
-                        'head' => 'Responsable',
-                        'field' => 'invoice_responsable'
-                    ],
-                    '5' => [
                         'head' => 'Total',
                         'field' => 'invoice_total'
                     ],
-                    '6' => [
+                    '5' => [
                         'head' => 'Id ref Contrato',
                         'field' => 'contract_id_ref'
                     ],
-                    '7' => [
+                    '6' => [
                         'head' => 'Proveedor',
                         'field' => 'contract_provider'
                     ],
-                    '8' => [
+                    '7' => [
                         'head' => 'Acciones',
                         'field' => '__actions__'
                     ]
