@@ -34,6 +34,14 @@
                         'field' => 'activity_name'
                     ],
                     '5' => [
+                        'head' => 'Pagado',
+                        'field' => 'sum_invoices'
+                    ],
+                    '6' => [
+                        'head' => 'Diferencia',
+                        'field' => 'diff_with_sum_invoices'
+                    ],
+                    '7' => [
                         'head' => 'Acciones',
                         'field' => '__actions__'
                     ]
