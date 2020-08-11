@@ -10,6 +10,10 @@ class ProjectView extends Model
     protected $fillable = [
         'project_name',
         'macroproject_id',
-        'macroproject_name'
+        'macroproject_name',
+        'sum_project_chapter_budgeted',
+        'sum_project_activity_budgeted',
+        'sum_project_activity_contracts_budgeted',
+        'sum_project_activity_contracts_invoices'
     ];
 }

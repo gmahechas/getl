@@ -17,7 +17,27 @@ class CreateProjectViewTable extends Migration
         CREATE OR REPLACE VIEW project_view AS
             SELECT
                 p.*,
-                m.macroproject_name
+                m.macroproject_name,
+                (
+                    SELECT SUM(sc.chapter_budgeted)
+                    FROM chapter_view sc
+                    WHERE sc.project_id = p.id
+                ) AS sum_project_chapter_budgeted,
+				(
+                    SELECT SUM(sc.sum_activity_budgeted)
+                    FROM chapter_view sc
+                    WHERE sc.project_id = p.id
+                ) AS sum_project_activity_budgeted,
+				(
+                    SELECT SUM(sc.sum_activity_contracts_budgeted)
+                    FROM chapter_view sc
+                    WHERE sc.project_id = p.id
+                ) AS sum_project_activity_contracts_budgeted,
+				(
+                    SELECT SUM(sc.sum_activity_contracts_invoices)
+                    FROM chapter_view sc
+                    WHERE sc.project_id = p.id
+                ) AS sum_project_activity_contracts_invoices
             FROM project p
             JOIN macroproject m ON m.id = p.macroproject_id
         ');

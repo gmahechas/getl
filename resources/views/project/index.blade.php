@@ -34,6 +34,22 @@
                         'field' => 'macroproject_name'
                     ],
                     '5' => [
+                        'head' => 'Ppto Lotes Trabajo',
+                        'field' => 'sum_project_chapter_budgeted'
+                    ],
+                    '6' => [
+                        'head' => 'Ppto Actividades',
+                        'field' => 'sum_project_activity_budgeted'
+                    ],
+                    '7' => [
+                        'head' => 'Contratado',
+                        'field' => 'sum_project_activity_contracts_budgeted'
+                    ],
+                    '8' => [
+                        'head' => 'Pagado',
+                        'field' => 'sum_project_activity_contracts_invoices'
+                    ],
+                    '9' => [
                         'head' => 'Acciones',
                         'field' => '__actions__'
                     ]
