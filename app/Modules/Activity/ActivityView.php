@@ -12,6 +12,8 @@ class ActivityView extends Model
         'activity_name',
         'activity_budgeted',
         'chapter_id',
-        'chapter_name'
+        'chapter_name',
+        'sum_contracts_budgeted',
+        'sum_contracts_invoices'
     ];
 }

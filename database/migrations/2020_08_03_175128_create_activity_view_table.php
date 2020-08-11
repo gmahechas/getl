@@ -17,7 +17,17 @@ class CreateActivityViewTable extends Migration
         CREATE OR REPLACE VIEW activity_view AS
             SELECT
                 a.*,
-                c.chapter_name
+                c.chapter_name,
+                (
+                    SELECT SUM(sc.contract_budgeted)
+                    FROM contract_view sc
+                    WHERE sc.activity_id = a.id
+                ) AS sum_contracts_budgeted,
+				(
+                    SELECT SUM(sc.sum_invoices)
+                    FROM contract_view sc
+                    WHERE sc.activity_id = a.id
+                ) AS sum_contracts_invoices
             FROM activity a
             JOIN chapter c ON c.id = a.chapter_id
         ');

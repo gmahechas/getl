@@ -26,7 +26,7 @@
                         'field' => 'activity_name'
                     ],
                     '3' => [
-                        'head' => 'Presupuesto',
+                        'head' => 'Presupuesto Actividad',
                         'field' => 'activity_budgeted'
                     ],
                     '4' => [
@@ -34,6 +34,14 @@
                         'field' => 'chapter_name'
                     ],
                     '5' => [
+                        'head' => 'Contratado',
+                        'field' => 'sum_contracts_budgeted'
+                    ],
+                    '6' => [
+                        'head' => 'Contratado Pagado',
+                        'field' => 'sum_contracts_invoices'
+                    ],
+                    '7' => [
                         'head' => 'Acciones',
                         'field' => '__actions__'
                     ]
