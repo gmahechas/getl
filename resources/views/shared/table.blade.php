@@ -12,7 +12,7 @@
                 @foreach ($columns as $column)
                     {{-- the field are not actions --}}
                     @if ($column['field'] !== '__actions__')
-                        <td>{{ is_numeric($entity->{$column['field']}) ? number_format($entity->{$column['field']}, 2) : $entity->{$column['field']} }}</td>
+                        <td>{{ (is_numeric($entity->{$column['field']}) && $column['field'] != 'id_ref') ? number_format($entity->{$column['field']}, 2) : $entity->{$column['field']} }}</td>
                     @else
                         {{-- the field are actions --}}
                         <td>

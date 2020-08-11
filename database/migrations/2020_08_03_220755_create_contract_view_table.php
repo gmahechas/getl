@@ -22,12 +22,7 @@ class CreateContractViewTable extends Migration
                     SELECT SUM(si.invoice_total)
                     FROM invoice si
                     WHERE si.contract_id = c.id
-                ) AS sum_invoices,
-                (c.contract_budgeted-(
-                    SELECT SUM(si.invoice_total)
-                    FROM invoice si
-                    WHERE si.contract_id = c.id
-                )) AS diff_with_sum_invoices
+                ) AS sum_invoices
             FROM contract c
             JOIN activity a ON a.id = c.activity_id
         ');

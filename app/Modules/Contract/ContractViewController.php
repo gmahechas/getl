@@ -14,8 +14,12 @@ class ContractViewController extends Controller
      */
     public function index()
     {
+        $contracts = ContractView::all();
+        foreach ($contracts as $key => $contract) {
+            $contracts[$key]->diff_with_sum_invoices = $contract->contract_budgeted - $contract->sum_invoices;
+        }
         return view('contract.index')->with([
-            'entities' => ContractView::all()
+            'entities' => $contracts
         ]);
     }
 
