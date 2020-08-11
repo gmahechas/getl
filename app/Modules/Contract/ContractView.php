@@ -12,6 +12,7 @@ class ContractView extends Model
         'contract_provider',
         'contract_budgeted',
         'activity_id',
-        'activity_name'
+        'activity_name',
+        'sum_invoices'
     ];
 }

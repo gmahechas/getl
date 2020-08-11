@@ -26,7 +26,7 @@
                         'field' => 'contract_provider'
                     ],
                     '3' => [
-                        'head' => 'Valor',
+                        'head' => 'Valor Contrato',
                         'field' => 'contract_budgeted'
                     ],
                     '4' => [
@@ -34,7 +34,7 @@
                         'field' => 'activity_name'
                     ],
                     '5' => [
-                        'head' => 'Pagado',
+                        'head' => 'Pagado (Facturas)',
                         'field' => 'sum_invoices'
                     ],
                     '6' => [
