@@ -20,7 +20,7 @@ class CreateContractViewTable extends Migration
                 a.activity_name,
                 (
                     SELECT SUM(si.invoice_total)
-                    FROM invoice si
+                    FROM invoice_view si
                     WHERE si.contract_id = c.id
                 ) AS sum_invoices
             FROM contract c
