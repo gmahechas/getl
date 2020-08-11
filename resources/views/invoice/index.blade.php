@@ -38,12 +38,12 @@
                         'field' => 'invoice_total'
                     ],
                     '6' => [
-                        'head' => 'Proveedor',
-                        'field' => 'contract_provider'
+                        'head' => 'Id ref Contrato',
+                        'field' => 'contract_id_ref'
                     ],
                     '7' => [
-                        'head' => 'Contrato',
-                        'field' => 'contract_id_ref'
+                        'head' => 'Proveedor',
+                        'field' => 'contract_provider'
                     ],
                     '8' => [
                         'head' => 'Acciones',
