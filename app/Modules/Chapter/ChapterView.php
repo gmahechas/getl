@@ -13,5 +13,8 @@ class ChapterView extends Model
         'chapter_budgeted',
         'project_id',
         'project_name',
+        'sum_activity_budgeted',
+        'sum_activity_contracts_budgeted',
+        'sum_activity_contracts_invoices'
     ];
 }

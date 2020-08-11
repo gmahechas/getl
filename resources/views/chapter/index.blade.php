@@ -34,6 +34,18 @@
                         'field' => 'project_name'
                     ],
                     '5' => [
+                        'head' => 'Ppto Actividades',
+                        'field' => 'sum_activity_budgeted'
+                    ],
+                    '6' => [
+                        'head' => 'Contratado',
+                        'field' => 'sum_activity_contracts_budgeted'
+                    ],
+                    '7' => [
+                        'head' => 'Pagao',
+                        'field' => 'sum_activity_contracts_invoices'
+                    ],
+                    '8' => [
                         'head' => 'Acciones',
                         'field' => '__actions__'
                     ]
@@ -41,6 +53,3 @@
             ])
     @endempty
 @endsection
-
-
-
