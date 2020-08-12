@@ -18,7 +18,14 @@ class CreateInvoiceStatusViewTable extends Migration
             SELECT
                 ins.*,
                 i.id_ref AS invoice_id_ref,
-                i.invoice_number AS invoice_number
+                i.invoice_number AS invoice_number,
+                (
+					SELECT sins.invoice_status_date
+					FROM invoice_status sins
+					WHERE sins.invoice_id = ins.invoice_id
+					ORDER BY sins.invoice_status_date DESC
+					LIMIT 1,1
+                ) AS invoice_status_date_end
             FROM invoice_status ins
             JOIN invoice i ON i.id = ins.invoice_id
         ');
