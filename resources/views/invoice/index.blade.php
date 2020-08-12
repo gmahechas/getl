@@ -42,6 +42,14 @@
                         'field' => 'contract_provider'
                     ],
                     '7' => [
+                        'head' => 'Estado Actual',
+                        'field' => 'invoice_status_status'
+                    ],
+                    '8' => [
+                        'head' => 'Responsable Actual',
+                        'field' => 'invoice_status_responsable'
+                    ],
+                    '9' => [
                         'head' => 'Acciones',
                         'field' => '__actions__'
                     ]

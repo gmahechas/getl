@@ -20,7 +20,11 @@
                 </div>
                 <div class="form-row">
                     <label>Factura</label>
-                    <input type="text" name="invoice_id" class="form-control" value="{{ old('invoice_id') }}">
+                    <select name="invoice_id" class="form-control">
+                        @foreach ($invoices as $invoice)
+                            <option value="{{ $invoice->id }}">{{ $invoice->id_ref .' - '. $invoice->invoice_number }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="form-row mt-3">
                     <button type="submit" class="btn btn-success btn-sm">Guardar</button>

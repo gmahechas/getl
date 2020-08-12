@@ -4,6 +4,7 @@ namespace App\Modules\InvoiceStatus;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Modules\Invoice\Invoice;
 
 class InvoiceStatusController extends Controller
 {
@@ -26,7 +27,8 @@ class InvoiceStatusController extends Controller
      */
     public function create()
     {
-        return view('invoice_status.create');
+        $invoices = Invoice::all(['id', 'id_ref', 'invoice_number']);
+        return view('invoice_status.create')->with(['invoices' => $invoices]);
     }
 
     /**
@@ -62,8 +64,10 @@ class InvoiceStatusController extends Controller
      */
     public function edit(InvoiceStatus $invoice_status)
     {
+        $invoices = Invoice::all(['id', 'id_ref', 'invoice_number']);
         return view('invoice_status.edit')->with([
-            'entity' => $invoice_status
+            'entity' => $invoice_status,
+            'invoices' => $invoices
         ]);
     }
 

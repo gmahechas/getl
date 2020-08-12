@@ -17,7 +17,8 @@ class CreateInvoiceStatusViewTable extends Migration
         CREATE OR REPLACE VIEW invoice_status_view AS
             SELECT
                 ins.*,
-                i.id_ref AS invoice_id_ref
+                i.id_ref AS invoice_id_ref,
+                i.invoice_number AS invoice_number
             FROM invoice_status ins
             JOIN invoice i ON i.id = ins.invoice_id
         ');

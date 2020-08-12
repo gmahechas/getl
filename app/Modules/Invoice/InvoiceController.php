@@ -64,7 +64,7 @@ class InvoiceController extends Controller
      */
     public function edit(Invoice $invoice)
     {
-        $contracts = Contract::all(['id', 'id_ref']);
+        $contracts = Contract::all(['id', 'id_ref', 'contract_provider', 'contract_budgeted']);
         return view('invoice.edit')->with([
             'entity' => $invoice,
             'contracts' => $contracts

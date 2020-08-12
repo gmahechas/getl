@@ -18,7 +18,28 @@ class CreateInvoiceViewTable extends Migration
             SELECT
                 i.*,
                 c.id_ref AS contract_id_ref,
-                c.contract_provider
+                c.contract_provider,
+				(
+                    SELECT sis.invoice_status_status
+                    FROM invoice_status sis
+                    WHERE sis.invoice_id = i.id
+                    ORDER BY sis.invoice_status_date DESC
+                    LIMIT 1
+                ) AS invoice_status_status,
+                (
+                    SELECT sis.invoice_status_date
+                    FROM invoice_status sis
+                    WHERE sis.invoice_id = i.id
+                    ORDER BY sis.invoice_status_date DESC
+                    LIMIT 1
+                ) AS invoice_status_date,
+                (
+                    SELECT sis.invoice_status_responsable
+                    FROM invoice_status sis
+                    WHERE sis.invoice_id = i.id
+                    ORDER BY sis.invoice_status_date DESC
+                    LIMIT 1
+                ) AS invoice_status_responsable
             FROM invoice i
             JOIN contract c ON c.id = i.contract_id
         ');

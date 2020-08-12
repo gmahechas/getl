@@ -27,7 +27,7 @@
                     <label>Contrato</label>
                     <select name="contract_id" class="form-control">
                         @foreach ($contracts as $contract)
-                            <option value="{{ $contract->id }}" {{ $contract->id === $entity->contract_id ? 'selected' : '' }}>{{ $contract->id_ref }}</option>
+                            <option value="{{ $contract->id }}" {{ $contract->id === $entity->contract_id ? 'selected' : '' }}>{{ $contract->id_ref .' - '. $contract->contract_provider .' - '. $contract->contract_budgeted }}</option>
                         @endforeach
                     </select>
                 </div>
