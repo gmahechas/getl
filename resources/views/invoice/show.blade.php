@@ -3,7 +3,7 @@
 @section('content')
     <h1>Factura: {{ $entity->id_ref }}</h1>
     <div class="row">
-        <div class="col-sm-5">
+        <div class="col-sm-3">
             <div class="form-row">
                 <div><strong>Id Ref: </strong>{{ $entity->id_ref }}</div>
             </div>
@@ -25,6 +25,34 @@
             <div class="form-row mt-3">
                 <a href="{{ route('invoice.index') }}" class="btn btn-secondary btn-sm">Regresar</a>
             </div>
+        </div>
+        <div class="col-sm-5">
+            <h3>Estados</h3>
+            @include('shared.table', [
+                'model' => 'invoice_status',
+                'columns' => [
+                    '1' => [
+                        'head' => 'Estado',
+                        'field' => 'invoice_status_status'
+                    ],
+                    '2' => [
+                        'head' => 'Fecha Inicio',
+                        'field' => 'invoice_status_date'
+                    ],
+                    '3' => [
+                        'head' => 'Fecha Final',
+                        'field' => 'invoice_status_date_end'
+                    ],
+                    '4' => [
+                        'head' => 'Dias en el Estado',
+                        'field' => 'invoice_status_date_diff'
+                    ],
+                    '5' => [
+                        'head' => 'Responsable',
+                        'field' => 'invoice_status_responsable'
+                    ]
+                ]
+            ])
         </div>
     </div>
 
