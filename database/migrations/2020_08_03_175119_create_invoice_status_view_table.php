@@ -25,9 +25,17 @@ class CreateInvoiceStatusViewTable extends Migration
 					WHERE sins.invoice_id = ins.invoice_id
 					ORDER BY sins.invoice_status_date DESC
 					LIMIT 1,1
-                ) AS invoice_status_date_end
+                ) AS invoice_status_date_end,
+                ROUND((TIMESTAMPDIFF(HOUR, (
+					SELECT sins.invoice_status_date
+					FROM invoice_status sins
+					WHERE sins.invoice_id = ins.invoice_id
+					ORDER BY sins.invoice_status_date DESC
+					LIMIT 1,1
+				), ins.invoice_status_date) / 24),1) AS invoice_status_date_diff
             FROM invoice_status ins
             JOIN invoice i ON i.id = ins.invoice_id
+            ORDER BY ins.invoice_id, ins.invoice_status_date DESC
         ');
     }
 
