@@ -30,6 +30,10 @@
                         'field' => 'invoice_status_responsable'
                     ],
                     '4' => [
+                        'head' => 'Factura',
+                        'field' => 'invoice_id_ref'
+                    ],
+                    '5' => [
                         'head' => 'Acciones',
                         'field' => '__actions__'
                     ]

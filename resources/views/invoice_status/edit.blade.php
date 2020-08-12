@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Editar Factura: {{ $entity->id }}</h1>
+    <h1>Editar Id: {{ $entity->id }}</h1>
     <div class="row">
         <div class="col-sm-5">
             <form method="POST" action="{{ route('invoice_status.update', ['invoice_status' => $entity->id]) }}">
