@@ -34,6 +34,9 @@ Route::get('/', function () {
 
     Route::resource('invoice', '\App\Modules\Invoice\InvoiceController')->except(['index', 'show']);
     Route::resource('invoice', '\App\Modules\Invoice\InvoiceViewController')->only(['index', 'show']);
+
+    Route::resource('invoice_status', '\App\Modules\InvoiceStatus\InvoiceStatusController');
+    // Route::resource('invoice_status', '\App\Modules\InvoiceStatus\InvoiceViewController')->only(['index', 'show']);
 /* }); */
 
 Auth::routes();

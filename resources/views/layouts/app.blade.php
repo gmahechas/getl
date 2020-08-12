@@ -52,6 +52,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('invoice.index') }}">Facturas</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('invoice_status.index') }}">Estados Facturas</a>
+                            </li>
                         {{-- @endauth --}}
                     </ul>
 
