@@ -10,19 +10,23 @@
                     There are not rows
                 </div>
             @else
-                @include('shared.table', [
-                    'model' => '--',
-                    'columns' => [
-                        '1' => [
-                            'head' => 'Estado',
-                            'field' => 'invoice_status_status'
-                        ],
-                        '2' => [
-                            'head' => 'Promedio',
-                            'field' => 'invoice_status_date_diff'
+            <div class="row">
+                <div class="col-4">
+                    @include('shared.table', [
+                        'model' => '--',
+                        'columns' => [
+                            '1' => [
+                                'head' => 'Estado',
+                                'field' => 'invoice_status_status'
+                            ],
+                            '2' => [
+                                'head' => 'Promedio',
+                                'field' => 'invoice_status_date_diff'
+                            ]
                         ]
-                    ]
-                ])
+                    ])
+                </div>
+            </div>
             @endempty
         </div>
     </div>
