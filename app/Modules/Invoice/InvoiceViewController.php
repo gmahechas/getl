@@ -13,10 +13,30 @@ class InvoiceViewController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $data = $request->all();
+        $entities = [];
+
+        if(count($data) != 0) {
+
+            $id_ref = $data['id_ref'];
+            $invoice_number = $data['invoice_number'];
+            $invoice_date_start = $data['invoice_date_start'];
+            $invoice_date_end = $data['invoice_date_end'];
+
+            $entities = InvoiceView::when($id_ref, function ($query) use ($id_ref) {
+                return $query->where('id_ref', '=', $id_ref);
+            })->when($invoice_number, function ($query) use ($invoice_number) {
+                return $query->where('invoice_number', '=', $invoice_number);
+            })->when(($invoice_date_start && $invoice_date_end), function ($query) use ($invoice_date_start, $invoice_date_end) {
+                return $query->whereBetween('invoice_date', [$invoice_date_start, $invoice_date_end]);
+            })->get();
+
+        }
         return view('invoice.index')->with([
-            'entities' => InvoiceView::all()
+            'entities' => $entities,
+            'data' => $data
         ]);
     }
 
