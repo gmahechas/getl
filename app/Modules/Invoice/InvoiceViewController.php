@@ -48,7 +48,7 @@ class InvoiceViewController extends Controller
      */
     public function show(InvoiceView $invoice)
     {
-        $invoice_status = InvoiceStatusView::where('invoice_id', $invoice->id)->orderBy('invoice_status_date', 'desc')->get();
+        $invoice_status = InvoiceStatusView::where('invoice_id_ref', $invoice->id_ref)->orderBy('invoice_status_date', 'desc')->get();
         return view('invoice.show')->with([
             'entity' => $invoice,
             'entities' => $invoice_status

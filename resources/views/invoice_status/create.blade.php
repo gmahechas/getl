@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Crear Factura</h1>
+    <h1>Crear Estado a una Factura</h1>
     <div class="row">
         <div class="col-sm-5">
             <form method="POST" action="{{ route('invoice_status.store') }}">
@@ -20,9 +20,9 @@
                 </div>
                 <div class="form-row">
                     <label>Factura</label>
-                    <select name="invoice_id" class="form-control">
+                    <select name="invoice_id_ref" class="form-control">
                         @foreach ($invoices as $invoice)
-                            <option value="{{ $invoice->id }}">{{ $invoice->id_ref .' - '. $invoice->invoice_number }}</option>
+                            <option value="{{ $invoice->id_ref }}">{{ 'Id Ref: ' . $invoice->id_ref .' - #Factura: '. $invoice->invoice_number }}</option>
                         @endforeach
                     </select>
                 </div>

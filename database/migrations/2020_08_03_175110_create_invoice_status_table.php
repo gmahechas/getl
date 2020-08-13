@@ -18,13 +18,7 @@ class CreateInvoiceStatusTable extends Migration
             $table->string('invoice_status_status', 128);
             $table->dateTime('invoice_status_date');
             $table->string('invoice_status_responsable', 128);
-
-            $table->bigInteger('invoice_id')->unsigned();
-            $table->foreign('invoice_id')
-                ->references('id')
-                ->on('invoice')
-                ->onDelete('restrict')
-                ->onUpdate('restrict');
+            $table->bigInteger('invoice_id_ref')->unsigned();
         });
     }
 

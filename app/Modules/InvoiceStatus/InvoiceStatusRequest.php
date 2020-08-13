@@ -27,7 +27,7 @@ class InvoiceStatusRequest extends FormRequest
             'invoice_status_status' => ['required'],
             'invoice_status_date' => ['required'],
             'invoice_status_responsable' => ['required'],
-            'invoice_id' => ['required']
+            'invoice_id_ref' => ['required']
         ];
     }
 }

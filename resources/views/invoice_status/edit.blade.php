@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Editar Id: {{ $entity->id }}</h1>
+    <h1>Editar Estado a una Factura: Id: {{ $entity->id }}</h1>
     <div class="row">
         <div class="col-sm-5">
             <form method="POST" action="{{ route('invoice_status.update', ['invoice_status' => $entity->id]) }}">
@@ -21,9 +21,9 @@
                 </div>
                 <div class="form-row">
                     <label>Factura</label>
-                    <select name="invoice_id" class="form-control">
+                    <select name="invoice_id_ref" class="form-control">
                         @foreach ($invoices as $invoice)
-                            <option value="{{ $invoice->id }}" {{ $invoice->id === $entity->invoice_id ? 'selected' : '' }}>{{ $invoice->id_ref .' - '. $invoice->invoice_number }}</option>
+                            <option value="{{ $invoice->id_ref }}" {{ $invoice->id === $entity->invoice_id ? 'selected' : '' }}>{{ 'Id Ref: ' . $invoice->id_ref .' - #Factura: '. $invoice->invoice_number }}</option>
                         @endforeach
                     </select>
                 </div>

@@ -11,10 +11,6 @@ class InvoiceStatusView extends Model
         'invoice_status_status',
         'invoice_status_date',
         'invoice_status_responsable',
-        'invoice_id',
-        'invoice_id_ref',
-        'invoice_number',
-        'invoice_status_date_end',
-        'invoice_status_date_diff'
+        'invoice_id_ref'
     ];
 }
