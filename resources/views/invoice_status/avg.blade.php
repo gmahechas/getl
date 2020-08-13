@@ -13,7 +13,6 @@
             <div class="row">
                 <div class="col-4">
                     @include('shared.table', [
-                        'model' => '--',
                         'columns' => [
                             '1' => [
                                 'head' => 'Estado',
@@ -25,6 +24,11 @@
                             ]
                         ]
                     ])
+                </div>
+                <div class="col-3">
+                    <div class="alert alert-primary" role="alert">
+                        Sumatoria de promedio de dias: {{ $sum_invoice_status_date_diff }} (Dias)
+                    </div>
                 </div>
             </div>
             @endempty

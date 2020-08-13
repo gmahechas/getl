@@ -46,10 +46,16 @@ class InvoiceStatusViewController extends Controller
                                     FROM invoice_status_view ins
                                     WHERE ins.invoice_status_date BETWEEN "'.$invoice_status_date_start.'" AND "'.$invoice_status_date_end.'"
                                     GROUP BY ins.invoice_status_status');
+
+            $sum_invoice_status_date_diff = 0;
+            foreach ($entities as $key => $entity) {
+                $sum_invoice_status_date_diff += $entity->invoice_status_date_diff;
+            }
         }
         return view('invoice_status.avg')->with([
             'entities' => $entities,
-            'data' => $data
+            'data' => $data,
+            'sum_invoice_status_date_diff' => $sum_invoice_status_date_diff
         ]);;
     }
 }

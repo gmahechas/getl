@@ -54,6 +54,11 @@
                 ]
             ])
         </div>
+        <div class="col-3">
+            <div class="alert alert-primary" role="alert">
+                Sumatoria de promedio de dias: {{ $sum_invoice_status_date_diff }} (Dias)
+            </div>
+        </div>
     </div>
 
 @endsection

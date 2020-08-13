@@ -52,9 +52,16 @@ class InvoiceViewController extends Controller
     public function show(InvoiceView $invoice)
     {
         $invoice_status = InvoiceStatusView::where('invoice_id_ref', $invoice->id_ref)->orderBy('invoice_status_date', 'desc')->get();
+
+        $sum_invoice_status_date_diff = 0;
+        foreach ($invoice_status as $key => $entity) {
+            $sum_invoice_status_date_diff += $entity->invoice_status_date_diff;
+        }
+
         return view('invoice.show')->with([
             'entity' => $invoice,
-            'entities' => $invoice_status
+            'entities' => $invoice_status,
+            'sum_invoice_status_date_diff' => $sum_invoice_status_date_diff
         ]);
     }
 }
