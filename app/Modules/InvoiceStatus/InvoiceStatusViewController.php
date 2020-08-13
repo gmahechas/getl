@@ -33,13 +33,23 @@ class InvoiceStatusViewController extends Controller
         ]);
     }
 
-    public function avg_invoice_status()
+    public function avg_invoice_status(Request $request)
     {
-        $rows = DB::select('SELECT ins.invoice_status_status AS invoice_status_status, AVG(ins.invoice_status_date_diff) AS invoice_status_date_diff
-                            FROM invoice_status_view ins
-                            GROUP BY ins.invoice_status_status');
+        $data = $request->all();
+        $entities = [];
+
+        if(count($data) != 0) {
+            $invoice_status_date_start = $data['invoice_status_date_start'];
+            $invoice_status_date_end = $data['invoice_status_date_end'];
+
+            $entities = DB::select('SELECT ins.invoice_status_status AS invoice_status_status, AVG(ins.invoice_status_date_diff) AS invoice_status_date_diff
+                                    FROM invoice_status_view ins
+                                    WHERE ins.invoice_status_date BETWEEN "'.$invoice_status_date_start.'" AND "'.$invoice_status_date_end.'"
+                                    GROUP BY ins.invoice_status_status');
+        }
         return view('invoice_status.avg')->with([
-            'entities' => $rows
+            'entities' => $entities,
+            'data' => $data
         ]);;
     }
 }
