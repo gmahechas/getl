@@ -14,6 +14,9 @@ class InvoiceView extends Model
         'invoice_total',
         'contract_id',
         'contract_id_ref',
-        'contract_provider'
+        'contract_provider',
+        'invoice_status_status',
+        'invoice_status_date',
+        'invoice_status_responsable',
     ];
 }

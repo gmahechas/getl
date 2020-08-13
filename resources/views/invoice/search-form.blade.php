@@ -26,6 +26,12 @@
                 </div>
             </div>
             <div class="col-1">
+                <div class="form-row">
+                    <label>Estado</label>
+                    <input type="text" name="invoice_status_status" class="form-control" value="{{ (isset($data['invoice_status_status'])) ? $data['invoice_status_status'] : '' }}">
+                </div>
+            </div>
+            <div class="col-1">
                 <label>&nbsp;</label>
                 <button type="submit" class="form-control btn btn-primary">Buscar</button>
             </div>

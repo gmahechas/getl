@@ -24,6 +24,7 @@ class InvoiceViewController extends Controller
             $invoice_number = $data['invoice_number'];
             $invoice_date_start = $data['invoice_date_start'];
             $invoice_date_end = $data['invoice_date_end'];
+            $invoice_status_status = $data['invoice_status_status'];
 
             $entities = InvoiceView::when($id_ref, function ($query) use ($id_ref) {
                 return $query->where('id_ref', '=', $id_ref);
@@ -31,6 +32,8 @@ class InvoiceViewController extends Controller
                 return $query->where('invoice_number', '=', $invoice_number);
             })->when(($invoice_date_start && $invoice_date_end), function ($query) use ($invoice_date_start, $invoice_date_end) {
                 return $query->whereBetween('invoice_date', [$invoice_date_start, $invoice_date_end]);
+            })->when($invoice_status_status, function ($query) use ($invoice_status_status) {
+                return $query->where('invoice_status_status', 'like', '%'.$invoice_status_status.'%');;
             })->get();
 
         }

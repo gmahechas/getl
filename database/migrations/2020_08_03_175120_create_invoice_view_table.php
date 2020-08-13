@@ -42,6 +42,7 @@ class CreateInvoiceViewTable extends Migration
                 ) AS invoice_status_responsable
             FROM invoice i
             JOIN contract c ON c.id = i.contract_id
+            ORDER BY i.invoice_date DESC
         ');
     }
 
