@@ -61,6 +61,9 @@
                                     <a class="nav-link" href="{{ route('avg_invoice_status') }}">Promedio Estados Facturas</a>
                                 </div>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('import.index') }}">IMPORTAR</a>
+                            </li>
                         {{-- @endauth --}}
                     </ul>
 
