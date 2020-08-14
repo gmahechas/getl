@@ -52,13 +52,14 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('invoice.index') }}">Facturas</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('invoice_status.index') }}">Estados Facturas</a>
+                            </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  Estado de Facturas
-                                </a>
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">INFORMES</a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="nav-link" href="{{ route('invoice_status.index') }}">Estados Facturas</a>
                                     <a class="nav-link" href="{{ route('avg_invoice_status') }}">Promedio Estados Facturas</a>
+                                    <a class="nav-link" href="{{ route('avg_invoice_status') }}">Estados Facturas</a>
                                 </div>
                             </li>
                             <li class="nav-item">

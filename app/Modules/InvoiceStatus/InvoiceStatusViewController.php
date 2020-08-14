@@ -38,6 +38,8 @@ class InvoiceStatusViewController extends Controller
         $data = $request->all();
         $entities = [];
 
+        $sum_invoice_status_date_diff = 0;
+
         if(count($data) != 0) {
             $invoice_status_date_start = $data['invoice_status_date_start'];
             $invoice_status_date_end = $data['invoice_status_date_end'];
@@ -46,8 +48,6 @@ class InvoiceStatusViewController extends Controller
                                     FROM invoice_status_view ins
                                     WHERE ins.invoice_status_date BETWEEN "'.$invoice_status_date_start.'" AND "'.$invoice_status_date_end.'"
                                     GROUP BY ins.invoice_status_status');
-
-            $sum_invoice_status_date_diff = 0;
             foreach ($entities as $key => $entity) {
                 $sum_invoice_status_date_diff += $entity->invoice_status_date_diff;
             }
