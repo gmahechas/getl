@@ -37,7 +37,10 @@ Route::get('/', function () {
 
     Route::resource('invoice_status', '\App\Modules\InvoiceStatus\InvoiceStatusController')->except(['index', 'show']);
     Route::resource('invoice_status', '\App\Modules\InvoiceStatus\InvoiceStatusViewController')->only(['index', 'show']);
-    Route::get('avg_invoice_status', '\App\Modules\InvoiceStatus\InvoiceStatusViewController@avg_invoice_status')->name('avg_invoice_status');
+
+
+    Route::get('avg_invoice_status', '\App\Modules\Report\ReportController@avg_invoice_status')->name('avg_invoice_status');
+    Route::get('count_invoice_status', '\App\Modules\Report\ReportController@count_invoice_status')->name('count_invoice_status');
 
     Route::get('/import', '\App\Modules\Import\ImportController@index')->name('import.index');
     Route::post('/import', '\App\Modules\Import\ImportController@store')->name('import.store');

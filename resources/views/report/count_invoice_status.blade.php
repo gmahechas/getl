@@ -2,9 +2,7 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-            <h2>Promedio Estados Facturas</h2>
-            @include('invoice_status.search-form-avg')
-            <hr />
+            <h2>Numero Facturas por Estado</h2>
             @empty($entities)
                 <div class="alert alert-warning">
                     There are not rows
@@ -19,16 +17,11 @@
                                 'field' => 'invoice_status_status'
                             ],
                             '2' => [
-                                'head' => 'Promedio',
-                                'field' => 'invoice_status_date_diff'
+                                'head' => 'Numero de Facturas',
+                                'field' => 'count_invoice_status_status'
                             ]
                         ]
                     ])
-                </div>
-                <div class="col-3">
-                    <div class="alert alert-primary" role="alert">
-                        Sumatoria de promedio de dias: {{ $sum_invoice_status_date_diff }} (Dias)
-                    </div>
                 </div>
             </div>
             @endempty
