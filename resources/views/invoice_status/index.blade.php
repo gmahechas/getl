@@ -15,7 +15,7 @@
                         'columns' => [
                             '1' => [
                                 'head' => 'Estado',
-                                'field' => 'invoice_status_status'
+                                'field' => 'status_description'
                             ],
                             '2' => [
                                 'head' => 'Fecha',

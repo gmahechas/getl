@@ -17,6 +17,7 @@ class CreateInvoiceStatusViewTable extends Migration
         CREATE OR REPLACE VIEW invoice_status_view AS
             SELECT
                 ins.*,
+                s.status_description AS status_description,
                 (
                     SELECT sins.invoice_status_date
                     FROM invoice_status sins
@@ -31,6 +32,7 @@ class CreateInvoiceStatusViewTable extends Migration
                     ORDER BY sins.invoice_status_date
                     LIMIT 1)) / 24),1) AS invoice_status_date_diff
             FROM invoice_status ins
+            JOIN status s ON s.id = ins.status_id
             ORDER BY ins.invoice_id_ref, ins.invoice_status_date DESC
         ');
     }

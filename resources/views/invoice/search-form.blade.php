@@ -27,8 +27,14 @@
             </div>
             <div class="col-1">
                 <div class="form-row">
-                    <label>Estado</label>
-                    <input type="text" name="invoice_status_status" class="form-control" value="{{ (isset($data['invoice_status_status'])) ? $data['invoice_status_status'] : '' }}">
+                <label>Estado</label>
+                    <select name="status_id" class="form-control">
+                        @foreach ($status as $sts)
+                            <option value="{{ $sts['id'] }}" {{
+                                (isset($data['status_id'])) ? ($data['status_id'] == $sts['id']) ? 'selected' : '' : ''
+                            }}>{{ $sts['status_description'] }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="col-1">

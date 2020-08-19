@@ -15,7 +15,6 @@ class CreateInvoiceStatusTable extends Migration
     {
         Schema::create('invoice_status', function (Blueprint $table) {
             $table->id();
-            $table->string('invoice_status_status', 128);
             $table->dateTime('invoice_status_date');
             $table->string('invoice_status_responsable', 128);
             $table->bigInteger('invoice_id_ref')->unsigned();

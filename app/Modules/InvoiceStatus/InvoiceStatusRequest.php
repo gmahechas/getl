@@ -24,10 +24,10 @@ class InvoiceStatusRequest extends FormRequest
     public function rules()
     {
         return [
-            'invoice_status_status' => ['required'],
             'invoice_status_date' => ['required'],
             'invoice_status_responsable' => ['required'],
-            'invoice_id_ref' => ['required']
+            'invoice_id_ref' => ['required'],
+            'status_id' => ['required'],
         ];
     }
 }

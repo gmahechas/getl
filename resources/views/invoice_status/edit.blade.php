@@ -8,10 +8,6 @@
                 @csrf
                 @method('PUT')
                 <div class="form-row">
-                    <label>Estado</label>
-                    <input type="text" name="invoice_status_status" class="form-control" value="{{ $entity->invoice_status_status }}">
-                </div>
-                <div class="form-row">
                     <label>Fecha</label>
                     <input type="text" name="invoice_status_date" class="form-control" value="{{ $entity->invoice_status_date }}">
                 </div>
@@ -24,6 +20,14 @@
                     <select name="invoice_id_ref" class="form-control">
                         @foreach ($invoices as $invoice)
                             <option value="{{ $invoice->id_ref }}" {{ $invoice->id === $entity->invoice_id ? 'selected' : '' }}>{{ 'Id Ref: ' . $invoice->id_ref .' - #Factura: '. $invoice->invoice_number }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-row">
+                    <label>Estado</label>
+                    <select name="status_id" class="form-control">
+                        @foreach ($status as $sts)
+                            <option value="{{ $sts->id }}" {{ ($entity->status_id == $sts->id) ? 'selected' : '' }}>{{ $sts->status_description }}</option>
                         @endforeach
                     </select>
                 </div>

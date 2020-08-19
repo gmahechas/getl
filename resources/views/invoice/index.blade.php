@@ -40,7 +40,7 @@
                             ],
                             '7' => [
                                 'head' => 'Estado Actual',
-                                'field' => 'invoice_status_status'
+                                'field' => 'status_description'
                             ],
                             '8' => [
                                 'head' => 'Responsable Actual',

@@ -16,13 +16,20 @@ class ReportController extends Controller
         $sum_invoice_status_date_diff = 0;
 
         if(count($data) != 0) {
+
             $invoice_status_date_start = $data['invoice_status_date_start'];
             $invoice_status_date_end = $data['invoice_status_date_end'];
 
-            $entities = DB::select('SELECT ins.invoice_status_status AS invoice_status_status, AVG(ins.invoice_status_date_diff) AS invoice_status_date_diff
+            $sql_where = '';
+            if($data['invoice_status_date_start'] && $data['invoice_status_date_end']) {
+                $sql_where = ' AND ins.invoice_status_date BETWEEN "'.$invoice_status_date_start.'" AND "'.$invoice_status_date_end . '"';
+            }
+
+            $entities = DB::select('SELECT ins.status_description AS status_description, AVG(ins.invoice_status_date_diff) AS invoice_status_date_diff
                                     FROM invoice_status_view ins
-                                    WHERE ins.invoice_status_date BETWEEN "'.$invoice_status_date_start.'" AND "'.$invoice_status_date_end.'"
-                                    GROUP BY ins.invoice_status_status');
+                                    WHERE 1=1 '.$sql_where.'
+                                    GROUP BY ins.status_id');
+
             foreach ($entities as $key => $entity) {
                 $sum_invoice_status_date_diff += $entity->invoice_status_date_diff;
             }
@@ -36,9 +43,9 @@ class ReportController extends Controller
 
     public function count_invoice_status(Request $request)
     {
-        $entities = DB::select('SELECT i.invoice_status_status AS invoice_status_status, COUNT(*) AS count_invoice_status_status
+        $entities = DB::select('SELECT i.status_description AS status_description, COUNT(*) AS count_status_id
                                 FROM invoice_view i
-                                GROUP BY i.invoice_status_status');
+                                GROUP BY i.status_id');
 
         return view('report.count_invoice_status')->with([
             'entities' => $entities

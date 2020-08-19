@@ -20,12 +20,20 @@ class CreateInvoiceViewTable extends Migration
                 c.id_ref AS contract_id_ref,
                 c.contract_provider,
                 (
-                    SELECT sis.invoice_status_status
+                    SELECT ss.status_description
+                    FROM invoice_status sis
+                    JOIN status ss ON ss.id = sis.status_id
+                    WHERE sis.invoice_id_ref = i.id_ref
+                    ORDER BY sis.invoice_status_date DESC
+                    LIMIT 1
+                ) AS status_description,
+                (
+                    SELECT sis.status_id
                     FROM invoice_status sis
                     WHERE sis.invoice_id_ref = i.id_ref
                     ORDER BY sis.invoice_status_date DESC
                     LIMIT 1
-                ) AS invoice_status_status,
+                ) AS status_id,
                 (
                     SELECT sis.invoice_status_date
                     FROM invoice_status sis

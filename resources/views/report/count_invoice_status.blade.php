@@ -14,11 +14,11 @@
                         'columns' => [
                             '1' => [
                                 'head' => 'Estado',
-                                'field' => 'invoice_status_status'
+                                'field' => 'status_description'
                             ],
                             '2' => [
                                 'head' => 'Numero de Facturas',
-                                'field' => 'count_invoice_status_status'
+                                'field' => 'count_status_id'
                             ]
                         ]
                     ])
