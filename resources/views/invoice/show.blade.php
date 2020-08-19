@@ -33,7 +33,7 @@
                 'columns' => [
                     '1' => [
                         'head' => 'Estado',
-                        'field' => 'status_id'
+                        'field' => 'status_description'
                     ],
                     '2' => [
                         'head' => 'Fecha Inicio',
