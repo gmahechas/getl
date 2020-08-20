@@ -14,6 +14,16 @@ class ReportController extends Controller
         $entities = [];
 
         $sum_invoice_status_date_diff = 0;
+        $secondTable = [];
+        $tempsaSC = 0;
+        $tempsaCAP = 0;
+        $totalTemps = 0;
+
+        $tempsaSCPercent = 0;
+        $tempsaCAPPercent = 0;
+        $totalPercent = 0;
+
+        $secondTableWithPercent = [];
 
         if(count($data) != 0) {
 
@@ -33,21 +43,21 @@ class ReportController extends Controller
             foreach ($entities as $key => $entity) {
                 $sum_invoice_status_date_diff += $entity->invoice_status_date_diff;
             }
+
+            $secondTable = $this->secondTable($entities);
+            $tempsaSC = $this->calculateTempsaSC($secondTable);
+
+            $indexTempsaCAP = array_search(6, array_column($secondTable, 'status_id'));
+            $tempsaCAP = $secondTable[$indexTempsaCAP]['invoice_status_date_diff'];
+
+            $totalTemps = $tempsaSC + $tempsaCAP;
+
+            $tempsaSCPercent = ($tempsaSC / $totalTemps) * 100;
+            $tempsaCAPPercent = ($tempsaCAP / $totalTemps) * 100;
+            $totalPercent = $tempsaSCPercent + $tempsaCAPPercent;
+
+            $secondTableWithPercent = $this->calculatePercent($secondTable, $tempsaSC);
         }
-
-        $secondTable = $this->secondTable($entities);
-        $tempsaSC = $this->calculateTempsaSC($secondTable);
-
-        $indexTempsaCAP = array_search(6, array_column($secondTable, 'status_id'));
-        $tempsaCAP = $secondTable[$indexTempsaCAP]['invoice_status_date_diff'];
-
-        $totalTemps = $tempsaSC + $tempsaCAP;
-
-        $tempsaSCPercent = ($tempsaSC / $totalTemps) * 100;
-        $tempsaCAPPercent = ($tempsaCAP / $totalTemps) * 100;
-        $totalPercent = $tempsaSCPercent + $tempsaCAPPercent;
-
-        $secondTableWithPercent = $this->calculatePercent($secondTable, $tempsaSC);
 
         return view('report.avg_invoice_status')->with([
             'entities' => $entities,
