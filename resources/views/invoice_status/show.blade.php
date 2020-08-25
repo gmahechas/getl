@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Estado de la Factura Id: {{ $entity->id }}</h1>
+    <h1>Estado de la Factura Id: {{ $entity->invoice_id_ref }}</h1>
     <div class="row">
         <div class="col-sm-5">
             <div class="form-row">
