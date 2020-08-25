@@ -29,7 +29,7 @@ class InvoiceStatusController extends Controller
     public function create()
     {
         $invoices = Invoice::all(['id', 'id_ref', 'invoice_number']);
-        $status = Status::all(['id', 'status_description']);
+        $status = Status::select(['id', 'status_description'])->orderBy('status_order', 'asc')->get();
         return view('invoice_status.create')->with(['invoices' => $invoices, 'status' => $status]);
     }
 

@@ -18,11 +18,9 @@ class ReportController extends Controller
         $tempsaSC = 0;
         $tempsaCAP = 0;
         $totalTemps = 0;
-
         $tempsaSCPercent = 0;
         $tempsaCAPPercent = 0;
         $totalPercent = 0;
-
         $secondTableWithPercent = [];
 
         if(count($data) != 0) {
@@ -35,10 +33,12 @@ class ReportController extends Controller
                 $sql_where = ' AND ins.invoice_status_date BETWEEN "'.$invoice_status_date_start.'" AND "'.$invoice_status_date_end . '"';
             }
 
-            $entities = DB::select('SELECT ins.status_id AS status_id, ins.status_description AS status_description, AVG(ins.invoice_status_date_diff) AS invoice_status_date_diff
+            $entities = DB::select('SELECT ins.status_id AS status_id, ins.status_description AS status_description, AVG(IFNULL(ins.invoice_status_date_diff, 0)) AS invoice_status_date_diff
                                     FROM invoice_status_view ins
+                                    JOIN status s ON s.id = ins.status_id
                                     WHERE 1=1 '.$sql_where.'
-                                    GROUP BY ins.status_id');
+                                    GROUP BY ins.status_id
+                                    ORDER BY s.status_order');
 
             foreach ($entities as $key => $entity) {
                 $sum_invoice_status_date_diff += $entity->invoice_status_date_diff;
@@ -47,8 +47,9 @@ class ReportController extends Controller
             $secondTable = $this->secondTable($entities);
             $tempsaSC = $this->calculateTempsaSC($secondTable);
 
-            $indexTempsaCAP = array_search(6, array_column($secondTable, 'status_id'));
-            $tempsaCAP = $secondTable[$indexTempsaCAP]['invoice_status_date_diff'];
+
+            $indexTempsaCAP = array_search('CAP', array_column($secondTable, 'newStatus'));
+            $tempsaCAP = $secondTable[$indexTempsaCAP+1]['invoice_status_date_diff'];
 
             $totalTemps = $tempsaSC + $tempsaCAP;
 
@@ -63,7 +64,7 @@ class ReportController extends Controller
             'entities' => $entities,
             'data' => $data,
             'sum_invoice_status_date_diff' => $sum_invoice_status_date_diff,
-            'secondTableWithPercent' => $secondTableWithPercent,
+            'secondTable' => $secondTableWithPercent,
             'tempsaSC' => $tempsaSC,
             'tempsaSCPercent' => $tempsaSCPercent,
             'tempsaCAP' => $tempsaCAP,
@@ -93,41 +94,57 @@ class ReportController extends Controller
         }
 
         $pivots = [
-            1 => 'Agent 1',
-            2 => 'CP',
-            3 => 'CSC',
-            5 => 'Agent 2',
-            6 => 'CAP',
+            1 => [
+                'status' => [1,2,3],
+                'newStatus' => 'Agent 1'
+            ],
+            2 => [
+                'status' => [4,5],
+                'newStatus' => 'CP'
+            ],
+            3 => [
+                'status' => [6,7],
+                'newStatus' => 'Autorisée CSC'
+            ],
+            4 => [
+                'status' => [8,8],
+                'newStatus' => 'Agent 2'
+            ],
+            5 => [
+                'status' => [9,9],
+                'newStatus' => 'CAP'
+            ],
         ];
 
-        $returnArray = [];
-        $convertedToArray = array_reverse($newEntities);
+        $newArray = [];
 
         foreach ($pivots as $key => $pivot) {
-
-            $invoiceStatusByStatus = array_keys(array_column($convertedToArray, 'status_id'), $key);
-            $newArray = [];
-            foreach ($invoiceStatusByStatus as $key => $invoiceStatus) {
-                $newItem =  $convertedToArray[$invoiceStatus];
-                $newItem['newStatus'] = $pivot;
-                $newArray[] = $newItem;
+            $partialSum = 0;
+            foreach ($newEntities as $entity) {
+                if (in_array($entity['status_id'], $pivot['status'])) {
+                    $partialSum += $entity['invoice_status_date_diff'];
+                }
             }
-            $returnArray[] = end($newArray);
+
+            $newArray[$key] = [
+                'newStatus' => $pivot['newStatus'],
+                'invoice_status_date_diff' => $partialSum
+            ];
 
         }
 
-        return $returnArray;
+        return $newArray;
     }
 
     private function calculateTempsaSC($invoice_status)
     {
 
-        $pivots = [1,2,3,5];
+        $pivots = [1,2,3,4];
 
         $sum = 0;
 
         foreach ($invoice_status as $key => $status) {
-            if (in_array($status['status_id'], $pivots)) {
+            if (in_array($key, $pivots)) {
                 $sum += $status['invoice_status_date_diff'];
             }
         }
@@ -135,15 +152,14 @@ class ReportController extends Controller
         return $sum;
     }
 
-
     private function calculatePercent($invoice_status, $tempsaSC)
     {
 
-        $pivots = [1,2,3,5,6];
+        $pivots = [1,2,3,4,5];
 
         $returnArray = [];
         foreach ($invoice_status as $key => $status) {
-            if (in_array($status['status_id'], $pivots)) {
+            if (in_array($key, $pivots)) {
                 $status['percent'] = ($status['invoice_status_date_diff'] / $tempsaSC) * 100;
                 $returnArray[] = $status;
             }
@@ -151,5 +167,4 @@ class ReportController extends Controller
 
         return $returnArray;
     }
-
 }

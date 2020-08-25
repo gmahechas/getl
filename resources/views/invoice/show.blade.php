@@ -74,40 +74,38 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($secondTableWithPercent as $entity)
+                            @foreach ($secondTable as $key => $entity)
                                 <tr>
                                     <td>{{ $entity['newStatus'] }}</td>
-                                    <td>{{ $entity['invoice_status_date'] }}</td>
+                                    <td>{{ $entity['invoice_status_date_start'] }}</td>
                                     <td>{{ $entity['invoice_status_date_end'] }}</td>
-                                    <td>{{ $entity['invoice_status_date_diff'] }}</td>
-                                    <td>{{ ($entity['status_id'] != 6) ? number_format($entity['percent'], 2) : '' }}</td>
+                                    <td>{{ number_format($entity['invoice_status_date_diff'], 2) }}</td>
+                                    <td>{{ ($key != 4) ? number_format($entity['percent'], 2) : '' }}</td>
                                 </tr>
                             @endforeach
                             <tr>
                                 <td>&nbsp;</td>
                                 <td>Temps à SC (jours)</td>
-                                <td>{{ $tempsaSC }}</td>
+                                <td>{{ number_format($tempsaSC, 2) }}</td>
                                 <td>{{ number_format($tempsaSCPercent, 2) }}</td>
                                 <td>&nbsp;</td>
                             </tr>
                             <tr>
                                 <td>&nbsp;</td>
                                 <td>Temps à CAP (jours)</td>
-                                <td>{{ $tempsaCAP }}</td>
+                                <td>{{ number_format($tempsaCAP, 2) }}</td>
                                 <td>{{ number_format($tempsaCAPPercent, 2) }}</td>
                                 <td>&nbsp;</td>
                             </tr>
                             <tr>
                                 <td>&nbsp;</td>
                                 <td>Total Temps à payée (jours)</td>
-                                <td>{{ $totalTemps }}</td>
+                                <td>{{ number_format($totalTemps, 2) }}</td>
                                 <td>{{ number_format($totalPercent, 2) }}</td>
                                 <td>&nbsp;</td>
                             </tr>
                         </tbody>
                     </table>
-                </div>
-                <div class="col-sm-4">
                 </div>
             </div>
         </div>

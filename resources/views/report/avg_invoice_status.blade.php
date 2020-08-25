@@ -38,11 +38,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($secondTableWithPercent as $entity)
+                            @foreach ($secondTable as $key => $entity)
                                 <tr>
                                     <td>{{ $entity['newStatus'] }}</td>
-                                    <td>{{ $entity['invoice_status_date_diff'] }}</td>
-                                    <td>{{ ($entity['status_id'] != 6) ? number_format($entity['percent'], 2) : '' }}</td>
+                                    <td>{{ number_format($entity['invoice_status_date_diff'], 2) }}</td>
+                                    <td>{{ ($key != 4) ? number_format($entity['percent'], 2) : '' }}</td>
                                 </tr>
                             @endforeach
                                 <tr>

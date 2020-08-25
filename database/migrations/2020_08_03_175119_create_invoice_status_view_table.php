@@ -33,7 +33,7 @@ class CreateInvoiceStatusViewTable extends Migration
                     LIMIT 1)) / 24),1) AS invoice_status_date_diff
             FROM invoice_status ins
             JOIN status s ON s.id = ins.status_id
-            ORDER BY ins.invoice_status_date DESC
+            ORDER BY ins.invoice_status_date ASC
         ');
     }
 

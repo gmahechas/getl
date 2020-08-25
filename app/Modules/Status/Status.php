@@ -9,6 +9,7 @@ class Status extends Model
     public $timestamps = false;
     protected $table = 'status';
     protected $fillable = [
-        'status_description'
+        'status_description',
+        'status_order'
     ];
 }
