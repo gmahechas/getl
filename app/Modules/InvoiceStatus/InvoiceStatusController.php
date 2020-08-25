@@ -66,10 +66,12 @@ class InvoiceStatusController extends Controller
      */
     public function edit(InvoiceStatus $invoice_status)
     {
+        $currentInvoice = Invoice::where('id_ref', $invoice_status->invoice_id_ref)->limit(1)->get();
         $invoices = Invoice::all(['id', 'id_ref', 'invoice_number']);
         $status = Status::all(['id', 'status_description']);
         return view('invoice_status.edit')->with([
             'entity' => $invoice_status,
+            'currentInvoice' => $currentInvoice,
             'invoices' => $invoices,
             'status' => $status
         ]);
