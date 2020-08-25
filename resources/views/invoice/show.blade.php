@@ -80,30 +80,30 @@
                                     <td>{{ $entity['invoice_status_date_start'] }}</td>
                                     <td>{{ $entity['invoice_status_date_end'] }}</td>
                                     <td>{{ number_format($entity['invoice_status_date_diff'], 2) }}</td>
-                                    <td>{{ ($key != 4) ? number_format($entity['percent'], 2) : '' }}</td>
+                                    <td>{{ ($entity['newStatus'] !== 'CAP') ? number_format($entity['percent'], 2) : '' }}</td>
                                 </tr>
                             @endforeach
-                            <tr>
-                                <td>&nbsp;</td>
-                                <td>Temps à SC (jours)</td>
-                                <td>{{ number_format($tempsaSC, 2) }}</td>
-                                <td>{{ number_format($tempsaSCPercent, 2) }}</td>
-                                <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                                <td>Temps à CAP (jours)</td>
-                                <td>{{ number_format($tempsaCAP, 2) }}</td>
-                                <td>{{ number_format($tempsaCAPPercent, 2) }}</td>
-                                <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                                <td>Total Temps à payée (jours)</td>
-                                <td>{{ number_format($totalTemps, 2) }}</td>
-                                <td>{{ number_format($totalPercent, 2) }}</td>
-                                <td>&nbsp;</td>
-                            </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>Temps à SC (jours)</td>
+                                    <td>{{ number_format($tempsaSC, 2) }}</td>
+                                    <td>{{ number_format($tempsaSCPercent, 2) }}</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>Temps à CAP (jours)</td>
+                                    <td>{{ number_format($tempsaCAP, 2) }}</td>
+                                    <td>{{ number_format($tempsaCAPPercent, 2) }}</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>Total Temps à payée (jours)</td>
+                                    <td>{{ number_format($totalTemps, 2) }}</td>
+                                    <td>{{ number_format($totalPercent, 2) }}</td>
+                                    <td>&nbsp;</td>
+                                </tr>
                         </tbody>
                     </table>
                 </div>

@@ -14,7 +14,7 @@ class InvoiceStatusViewController extends Controller
      */
     public function index()
     {
-        $entities = InvoiceStatusView::all();
+        $entities = [];
         return view('invoice_status.index')->with([
             'entities' => $entities
         ]);

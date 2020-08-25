@@ -67,25 +67,25 @@ class InvoiceViewController extends Controller
         $tempsaSCPercent = 0;
         $tempsaCAPPercent = 0;
         $totalPercent = 0;
-        $secondTableWithPercent = [];
 
         if(count($invoice_status_array) != 0) {
             foreach ($invoice_status as $key => $entity) {
                 $sum_invoice_status_date_diff += $entity->invoice_status_date_diff;
             }
             $secondTable = $this->secondTable($invoice_status_array);
-            $tempsaSC = $this->calculateTempsaSC($secondTable);
+            $tempsaSC = $this->calculateTempsaSC($secondTable); // puede ser 0
 
             $indexTempsaCAP = array_search('CAP', array_column($secondTable, 'newStatus'));
-            $tempsaCAP = ($secondTable[$indexTempsaCAP]['invoice_status_date_diff'] != '') ? $secondTable[$indexTempsaCAP]['invoice_status_date_diff'] : 0;
+            $tempsaCAP = ($secondTable[$indexTempsaCAP+1]['invoice_status_date_diff'] != '') ? $secondTable[$indexTempsaCAP+1]['invoice_status_date_diff'] : 0;
 
             $totalTemps = $tempsaSC + $tempsaCAP;
 
             if($totalTemps > 0) {
                 $tempsaSCPercent = ($tempsaSC / $totalTemps) * 100;
                 $tempsaCAPPercent = ($tempsaCAP / $totalTemps) * 100;
-                $totalPercent = $tempsaSCPercent + $tempsaCAPPercent;
             }
+
+            $totalPercent = $tempsaSCPercent + $tempsaCAPPercent;
             $secondTableWithPercent = $this->calculatePercent($secondTable, $tempsaSC);
         }
 
@@ -135,19 +135,11 @@ class InvoiceViewController extends Controller
         ];
 
         $newArray = [];
-
-
-        $testFirst = 1;
-        $testLast = 4;
-
         $columns = array_column($invoice_status, 'status_id');
-
-        $firstKey = array_search($testFirst, $columns);
-        $lastKey = array_search($testLast, array_reverse($columns));
 
         foreach ($pivots as $key => $pivot) {
 
-            $columns = array_column($invoice_status, 'status_id');
+
 
             $firstKey = array_search($pivot['first'], $columns);
             $lastKey = array_search($pivot['last'], array_reverse($columns));
@@ -201,14 +193,18 @@ class InvoiceViewController extends Controller
     private function calculatePercent($invoice_status, $tempsaSC)
     {
         $pivots = [1,2,3,4,5];
-
         $returnArray = [];
+
         foreach ($invoice_status as $key => $status) {
 
             if (in_array($key, $pivots)) {
 
                 if($status['invoice_status_date_start'] != '' && $status['invoice_status_date_end'] != '') {
-                    $status['percent'] = ($status['invoice_status_date_diff'] / $tempsaSC) * 100;
+                    if($tempsaSC > 0.00) {
+                        $status['percent'] = ($status['invoice_status_date_diff'] / $tempsaSC) * 100;
+                    } else {
+                        $status['percent'] = 0;
+                    }
 
                 } else {
                     $status['percent'] = 0;
