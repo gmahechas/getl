@@ -12,11 +12,23 @@ class InvoiceStatusViewController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $data = $request->all();
         $entities = [];
+
+        if(count($data) != 0) {
+            $id_ref = $data['id_ref'];
+
+            $entities = InvoiceStatusView::when($id_ref, function ($query) use ($id_ref) {
+                return $query->where('invoice_id_ref', '=', $id_ref);
+            })->get();
+
+        }
+
         return view('invoice_status.index')->with([
-            'entities' => $entities
+            'entities' => $entities,
+            'data' => $data,
         ]);
     }
 

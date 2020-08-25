@@ -4,7 +4,8 @@
     <div class="row">
         <div class="col-12">
             <h2>Estados Facturas</h2>
-            <a href="{{ route('invoice_status.create') }}" class="btn btn-success">Crear</a>
+            @include('invoice_status.search-form')
+            <hr />
             @empty($entities)
                 <div class="alert alert-warning">
                     There are not product
