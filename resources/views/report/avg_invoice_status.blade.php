@@ -21,6 +21,10 @@
                             '2' => [
                                 'head' => 'Promedio',
                                 'field' => 'invoice_status_date_diff'
+                            ],
+                            '3' => [
+                                'head' => 'Cantidad Facturas',
+                                'field' => 'invoice_count'
                             ]
                         ]
                     ])

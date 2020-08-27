@@ -29,16 +29,23 @@ class ReportController extends Controller
             $invoice_status_date_end = $data['invoice_status_date_end'];
 
             $sql_where = '';
+            $sql_where_sub_count_invoices = '';
             if($data['invoice_status_date_start'] && $data['invoice_status_date_end']) {
                 $sql_where = ' AND ins.invoice_status_date BETWEEN "'.$invoice_status_date_start.'" AND "'.$invoice_status_date_end . '"';
+                $sql_where_sub_count_invoices = ' AND sub_ins.invoice_status_date BETWEEN "'.$invoice_status_date_start.'" AND "'.$invoice_status_date_end . '"';
             }
 
-            $entities = DB::select('SELECT ins.status_id AS status_id, ins.status_description AS status_description, AVG(IFNULL(ins.invoice_status_date_diff, 0)) AS invoice_status_date_diff
-                                    FROM invoice_status_view ins
-                                    JOIN status s ON s.id = ins.status_id
-                                    WHERE 1=1 '.$sql_where.'
-                                    GROUP BY ins.status_id
-                                    ORDER BY s.status_order');
+            $sql = 'SELECT ins.status_id AS status_id, ins.status_description AS status_description, AVG(IFNULL(ins.invoice_status_date_diff, 0)) AS invoice_status_date_diff,
+                    (SELECT COUNT(DISTINCT(sub_ins.invoice_id_ref))
+                     FROM invoice_status sub_ins
+                     WHERE sub_ins.status_id = ins.status_id '.$sql_where_sub_count_invoices.') AS  invoice_count
+                    FROM invoice_status_view ins
+                    JOIN status s ON s.id = ins.status_id
+                    WHERE 1=1 '.$sql_where.'
+                    GROUP BY ins.status_id
+                    ORDER BY s.status_order';
+
+            $entities = DB::select($sql);
 
             foreach ($entities as $key => $entity) {
                 $sum_invoice_status_date_diff += $entity->invoice_status_date_diff;
