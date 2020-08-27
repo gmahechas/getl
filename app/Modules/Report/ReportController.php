@@ -25,8 +25,8 @@ class ReportController extends Controller
 
         if(count($data) != 0) {
 
-            $invoice_status_date_start = $data['invoice_status_date_start'];
-            $invoice_status_date_end = $data['invoice_status_date_end'];
+            $invoice_status_date_start = date('Y-m-d H:i:s', strtotime($data['invoice_status_date_start']));
+            $invoice_status_date_end = date('Y-m-d H:i:s', strtotime($data['invoice_status_date_end']));
 
             $sql_where = '';
             $sql_where_sub_count_invoices = '';
@@ -48,7 +48,10 @@ class ReportController extends Controller
             $entities = DB::select($sql);
 
             foreach ($entities as $key => $entity) {
-                $sum_invoice_status_date_diff += $entity->invoice_status_date_diff;
+                if($entity->status_id != 10 && $entity->status_id != 11) {
+                    $sum_invoice_status_date_diff += $entity->invoice_status_date_diff;
+                }
+
             }
 
             $secondTable = $this->secondTable($entities);

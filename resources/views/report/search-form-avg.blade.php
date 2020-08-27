@@ -4,13 +4,13 @@
             <div class="col-1">
                 <div class="form-row">
                     <label>Fecha (Inicio)</label>
-                    <input type="text" name="invoice_status_date_start" class="form-control" value="{{ (isset($data['invoice_status_date_start'])) ? $data['invoice_status_date_start'] : '' }}">
+                    <input type="datetime-local" name="invoice_status_date_start" class="form-control" value="{{ (isset($data['invoice_status_date_start'])) ? $data['invoice_status_date_start'] : '' }}">
                 </div>
             </div>
             <div class="col-1">
                 <div class="form-row">
                     <label>Fecha (Final)</label>
-                    <input type="text" name="invoice_status_date_end" class="form-control" value="{{ (isset($data['invoice_status_date_end'])) ? $data['invoice_status_date_end'] : '' }}">
+                    <input type="datetime-local" name="invoice_status_date_end" class="form-control" value="{{ (isset($data['invoice_status_date_end'])) ? $data['invoice_status_date_end'] : '' }}">
                 </div>
             </div>
             <div class="col-1">
