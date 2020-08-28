@@ -25,6 +25,10 @@
                             '3' => [
                                 'head' => 'Cantidad Facturas',
                                 'field' => 'invoice_count'
+                            ],
+                            '4' => [
+                                'head' => 'Cantidad Operaciones',
+                                'field' => 'invoice_count_operations'
                             ]
                         ]
                     ])

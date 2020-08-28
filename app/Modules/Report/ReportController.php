@@ -38,7 +38,10 @@ class ReportController extends Controller
             $sql = 'SELECT ins.status_id AS status_id, ins.status_description AS status_description, AVG(IFNULL(ins.invoice_status_date_diff, 0)) AS invoice_status_date_diff,
                     (SELECT COUNT(DISTINCT(sub_ins.invoice_id_ref))
                      FROM invoice_status sub_ins
-                     WHERE sub_ins.status_id = ins.status_id '.$sql_where_sub_count_invoices.') AS  invoice_count
+                     WHERE sub_ins.status_id = ins.status_id '.$sql_where_sub_count_invoices.') AS  invoice_count,
+                    (SELECT COUNT(sub_ins.invoice_id_ref)
+                     FROM invoice_status sub_ins
+                     WHERE sub_ins.status_id = ins.status_id '.$sql_where_sub_count_invoices.') AS  invoice_count_operations
                     FROM invoice_status_view ins
                     JOIN status s ON s.id = ins.status_id
                     WHERE 1=1 '.$sql_where.'
