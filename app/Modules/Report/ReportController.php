@@ -43,10 +43,9 @@ class ReportController extends Controller
                      FROM invoice_status sub_ins
                      WHERE sub_ins.status_id = ins.status_id '.$sql_where_sub_count_invoices.') AS  invoice_count_operations
                     FROM invoice_status_view ins
-                    JOIN status s ON s.id = ins.status_id
                     WHERE 1=1 '.$sql_where.'
                     GROUP BY ins.status_id
-                    ORDER BY s.status_order';
+                    ORDER BY ins.status_order';
 
             $entities = DB::select($sql);
 

@@ -1,19 +1,10 @@
-<?php
+mysql.server start
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+mysql -u root -p; //Ingresa contraseña
 
-class CreateInvoiceStatusViewTable extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        DB::statement('
+use getl
+
+
         CREATE OR REPLACE VIEW invoice_status_view AS
             SELECT
                 ins.*,
@@ -35,16 +26,3 @@ class CreateInvoiceStatusViewTable extends Migration
             FROM invoice_status ins
             JOIN status s ON s.id = ins.status_id
             ORDER BY ins.invoice_status_date ASC
-        ');
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('invoice_status_view');
-    }
-}
