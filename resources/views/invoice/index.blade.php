@@ -43,10 +43,6 @@
                                 'field' => 'status_description'
                             ],
                             '8' => [
-                                'head' => 'Responsable Actual',
-                                'field' => 'invoice_status_responsable'
-                            ],
-                            '9' => [
                                 'head' => 'Acciones',
                                 'field' => '__actions__'
                             ]

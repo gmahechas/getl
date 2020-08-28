@@ -1,19 +1,12 @@
-<?php
+mysql.server start
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+mysql -u root -p; //Ingresa contraseña
 
-class CreateInvoiceViewTable extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        DB::statement('
+use getl
+
+
+CREATE INDEX id_ref_index ON invoice (id_ref);
+
         CREATE OR REPLACE VIEW invoice_view AS
             SELECT
                 i.*,
@@ -33,20 +26,14 @@ class CreateInvoiceViewTable extends Migration
                     WHERE sis.invoice_id_ref = i.id_ref
                     ORDER BY sis.invoice_status_date DESC
                     LIMIT 1
-                ) AS status_id
+                ) AS status_id,
+                (
+                    SELECT sis.invoice_status_date
+                    FROM invoice_status sis
+                    WHERE sis.invoice_id_ref = i.id_ref
+                    ORDER BY sis.invoice_status_date DESC
+                    LIMIT 1
+                ) AS invoice_status_date
             FROM invoice i
             JOIN contract c ON c.id = i.contract_id
             ORDER BY i.invoice_date DESC
-        ');
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('invoice_view');
-    }
-}
