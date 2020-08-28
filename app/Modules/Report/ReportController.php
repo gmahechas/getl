@@ -90,7 +90,8 @@ class ReportController extends Controller
     {
         $entities = DB::select('SELECT i.status_description AS status_description, COUNT(*) AS count_status_id
                                 FROM invoice_view i
-                                GROUP BY i.status_id');
+                                GROUP BY i.status_id
+                                ORDER BY i.status_id');
 
         return view('report.count_invoice_status')->with([
             'entities' => $entities
