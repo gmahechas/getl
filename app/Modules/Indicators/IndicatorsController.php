@@ -15,35 +15,48 @@ class IndicatorsController extends Controller
             $invoice_status_date_start = date('Y-m-d H:i:s', strtotime($data['invoice_status_date_start']));
             $invoice_status_date_end = date('Y-m-d H:i:s', strtotime($data['invoice_status_date_end']));
 
-            $avg = $this->avg($invoice_status_date_start, $invoice_status_date_end);
-
-            echo '<pre>' . print_r($avg, true) . '</pre>';
+            $indicator_1 = $this->indicator_1_2(1, $invoice_status_date_start, $invoice_status_date_end);
+            $indicator_2 = $this->indicator_1_2(10, $invoice_status_date_start, $invoice_status_date_end);
+            $indicator_3 = $this->indicator_3_4(10, $invoice_status_date_start, $invoice_status_date_end, '>');
+            $indicator_4 = $this->indicator_3_4(10, $invoice_status_date_start, $invoice_status_date_end, '<=');
         }
 
         return view('indicators.index')->with([
+            'data' => $data,
+            'indicator_1' => $indicator_1,
+            'indicator_2' => $indicator_2,
+            'indicator_3' => $indicator_3,
+            'indicator_4' => $indicator_4
         ]);
     }
 
-    private function avg($invoice_status_date_start, $invoice_status_date_end) {
+    private function indicator_1_2($status_id, $invoice_status_date_start, $invoice_status_date_end) {
 
         $sum_invoice_status_date_diff = 0;
-        $sql = 'SELECT ins.status_id AS status_id, ins.status_description AS status_description, AVG(IFNULL(ins.invoice_status_date_diff, 0)) AS invoice_status_date_diff
-                FROM invoice_status_view ins
-                WHERE ins.invoice_status_date BETWEEN "'.$invoice_status_date_start.'" AND "'.$invoice_status_date_end.'"
-                GROUP BY ins.status_id
-                ORDER BY ins.status_order';
+        $sql = 'SELECT COUNT(DISTINCT(ita.invoice_id_ref)) AS count_invoices, IFNULL(AVG(ita.duration), 0) AS avg_duration
+                FROM invoice_time_avg ita
+                WHERE ita.status_id = '.$status_id.' AND ita.invoice_status_date BETWEEN "'.$invoice_status_date_start.'" AND "'.$invoice_status_date_end.'"';
 
         $entities = DB::select($sql);
 
-        foreach ($entities as $key => $entity) {
-            if($entity->status_id != 10 && $entity->status_id != 11) {
-                $sum_invoice_status_date_diff += $entity->invoice_status_date_diff;
-            }
-        }
+        return [
+            'result' => $entities,
+        ];
+
+    }
+
+    private function indicator_3_4($status_id, $invoice_status_date_start, $invoice_status_date_end, $comparation) {
+
+        $sum_invoice_status_date_diff = 0;
+        $sql = 'SELECT COUNT(DISTINCT(ita.invoice_id_ref)) AS count_invoices, IFNULL(AVG(ita.duration), 0) AS avg_duration
+                FROM invoice_time_avg ita
+                WHERE ita.status_id = '.$status_id.' AND ita.invoice_status_date BETWEEN "'.$invoice_status_date_start.'" AND "'.$invoice_status_date_end.'"
+                AND ita.duration '. $comparation. ' 30';
+
+        $entities = DB::select($sql);
 
         return [
-            'avg' => $entities,
-            'sum_avg' => $sum_invoice_status_date_diff
+            'result' => $entities,
         ];
 
     }
