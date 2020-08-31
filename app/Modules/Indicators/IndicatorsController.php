@@ -11,6 +11,12 @@ class IndicatorsController extends Controller
     public function index(Request $request)
     {
         $data = $request->all();
+
+        $indicator_1 = [];
+        $indicator_2 = [];
+        $indicator_3 = [];
+        $indicator_4 = [];
+
         if(count($data) != 0) {
             $invoice_status_date_start = date('Y-m-d H:i:s', strtotime($data['invoice_status_date_start']));
             $invoice_status_date_end = date('Y-m-d H:i:s', strtotime($data['invoice_status_date_end']));
