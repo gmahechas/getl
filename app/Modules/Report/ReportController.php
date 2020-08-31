@@ -83,7 +83,7 @@ class ReportController extends Controller
             'tempsaCAPPercent' => $tempsaCAPPercent,
             'totalTemps' => $totalTemps,
             'totalPercent' => $totalPercent
-        ]);;
+        ]);
     }
 
     public function count_invoice_status(Request $request)

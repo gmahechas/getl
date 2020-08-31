@@ -41,6 +41,7 @@ Route::get('/', function () {
 
     Route::get('avg_invoice_status', '\App\Modules\Report\ReportController@avg_invoice_status')->name('avg_invoice_status');
     Route::get('count_invoice_status', '\App\Modules\Report\ReportController@count_invoice_status')->name('count_invoice_status');
+    Route::get('indicators', '\App\Modules\Indicators\IndicatorsController@index')->name('indicators.index');
 
     Route::get('/import', '\App\Modules\Import\ImportController@index')->name('import.index');
     Route::post('/import', '\App\Modules\Import\ImportController@store')->name('import.store');

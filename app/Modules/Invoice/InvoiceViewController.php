@@ -70,7 +70,9 @@ class InvoiceViewController extends Controller
 
         if(count($invoice_status_array) != 0) {
             foreach ($invoice_status as $key => $entity) {
-                $sum_invoice_status_date_diff += $entity->invoice_status_date_diff;
+                if($entity->status_id != 10 && $entity->status_id != 11) {
+                    $sum_invoice_status_date_diff += $entity->invoice_status_date_diff;
+                }
             }
             $secondTable = $this->secondTable($invoice_status_array);
             $tempsaSC = $this->calculateTempsaSC($secondTable); // puede ser 0
