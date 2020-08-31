@@ -104,6 +104,12 @@
                                     <td>{{ $indicator_4['result'][0]->count_invoices / $indicator_1['result'][0]->avg_duration  }}</td>
                                     <td>&nbsp;</td>
                                 </tr>
+                                <tr>
+                                    <td>15</td>
+                                    <td>---</td>
+                                    <td>{{ $indicator_3['result'][0]->count_invoices / $indicator_2['result'][0]->count_invoices  }}</td>
+                                    <td>&nbsp;</td>
+                                </tr>
                             </tbody>
                         </table>
                     @endempty
