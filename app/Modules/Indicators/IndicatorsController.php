@@ -21,10 +21,10 @@ class IndicatorsController extends Controller
             $invoice_status_date_start = date('Y-m-d H:i:s', strtotime($data['invoice_status_date_start']));
             $invoice_status_date_end = date('Y-m-d H:i:s', strtotime($data['invoice_status_date_end']));
 
-            $indicator_1 = $this->indicator_1_2(1, $invoice_status_date_start, $invoice_status_date_end);
-            $indicator_2 = $this->indicator_1_2(10, $invoice_status_date_start, $invoice_status_date_end);
-            $indicator_3 = $this->indicator_3_4(10, $invoice_status_date_start, $invoice_status_date_end, '>');
-            $indicator_4 = $this->indicator_3_4(10, $invoice_status_date_start, $invoice_status_date_end, '<=');
+            $indicator_1 = $this->indicator_1_2(1, $invoice_status_date_start, $invoice_status_date_end); //recibidas
+            $indicator_2 = $this->indicator_1_2(10, $invoice_status_date_start, $invoice_status_date_end); //pagadas
+            $indicator_3 = $this->indicator_3_4(10, $invoice_status_date_start, $invoice_status_date_end, '>'); // mayor 30 dias
+            $indicator_4 = $this->indicator_3_4(10, $invoice_status_date_start, $invoice_status_date_end, '<='); // menor o igual 30 dias
         }
 
         return view('indicators.index')->with([

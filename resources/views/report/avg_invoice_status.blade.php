@@ -11,7 +11,7 @@
                 </div>
             @else
             <div class="row">
-                <div class="col-4">
+                <div class="col-5">
                     @include('shared.table', [
                         'columns' => [
                             '1' => [
@@ -19,17 +19,17 @@
                                 'field' => 'status_description'
                             ],
                             '2' => [
-                                'head' => 'Promedio',
-                                'field' => 'invoice_status_date_diff'
+                                'head' => 'Cantidad Operaciones',
+                                'field' => 'invoice_count_operations'
                             ],
                             '3' => [
                                 'head' => 'Cantidad Facturas',
                                 'field' => 'invoice_count'
                             ],
                             '4' => [
-                                'head' => 'Cantidad Operaciones',
-                                'field' => 'invoice_count_operations'
-                            ]
+                                'head' => 'Promedio (Dias)',
+                                'field' => 'invoice_status_date_diff'
+                            ],
                         ]
                     ])
                     <div class="alert alert-primary" role="alert">
