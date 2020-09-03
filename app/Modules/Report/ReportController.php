@@ -14,6 +14,8 @@ class ReportController extends Controller
         $entities = [];
 
         $sum_invoice_status_date_diff = 0;
+        $sum_invoice_count_operations = 0;
+        $sum_invoice_count = 0;
         $secondTable = [];
         $tempsaSC = 0;
         $tempsaCAP = 0;
@@ -53,7 +55,8 @@ class ReportController extends Controller
                 if($entity->status_id != 10 && $entity->status_id != 11) {
                     $sum_invoice_status_date_diff += $entity->invoice_status_date_diff;
                 }
-
+                $sum_invoice_count_operations += $entity->invoice_count_operations;
+                $sum_invoice_count += $entity->invoice_count;
             }
 
             $secondTable = $this->secondTable($entities);
@@ -76,6 +79,8 @@ class ReportController extends Controller
             'entities' => $entities,
             'data' => $data,
             'sum_invoice_status_date_diff' => $sum_invoice_status_date_diff,
+            'sum_invoice_count_operations' => $sum_invoice_count_operations,
+            'sum_invoice_count' => $sum_invoice_count,
             'secondTable' => $secondTableWithPercent,
             'tempsaSC' => $tempsaSC,
             'tempsaSCPercent' => $tempsaSCPercent,

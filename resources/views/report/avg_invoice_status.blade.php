@@ -32,9 +32,28 @@
                             ],
                         ]
                     ])
-                    <div class="alert alert-primary" role="alert">
-                        Sumatoria de promedio de dias: {{ $sum_invoice_status_date_diff }} (Dias)
-                    </div>
+                    <table class="table table-sm table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>Valor</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Sumatoria Cantidad Operaciones:</td>
+                                <td>{{ $sum_invoice_count_operations }}</td>
+                            </tr>
+                            <tr>
+                                <td>Sumatoria Cantidad Facturas:</td>
+                                <td>{{ $sum_invoice_count }}</td>
+                            </tr>
+                            <tr>
+                                <td>Sumatoria de promedio de dias:</td>
+                                <td>{{ $sum_invoice_status_date_diff }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="col-4">
                     <table class="table table-sm table-bordered table-hover">
