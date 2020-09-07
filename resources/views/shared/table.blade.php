@@ -1,4 +1,4 @@
-Numero de registros: {{ count($entities) }}
+Nombre de statuts: {{ count($entities) }}
 <table class="table table-sm table-bordered table-hover">
     <thead class="thead-dark">
         <tr>
