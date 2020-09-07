@@ -58,8 +58,10 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">INFORMES</a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="nav-link" href="{{ route('indicators.index') }}">Indicadores</a>
-                                    <a class="nav-link" href="{{ route('avg_invoice_status') }}">Promedio Estados Facturas</a>
+                                    <a class="nav-link" href="{{ route('indicators.index') }}">Indicadores (Español)</a>
+                                    <a class="nav-link" href="{{ route('indicators.index_french') }}">Indicateurs (Français)</a>
+                                    <a class="nav-link" href="{{ route('avg_invoice_status') }}">Promedio Estados Facturas (Español)</a>
+                                    <a class="nav-link" href="{{ route('avg_invoice_status_french') }}">Traitement des factures par statut (Français)</a>
                                     <a class="nav-link" href="{{ route('count_invoice_status') }}">Numero Facturas por Estado</a>
                                 </div>
                             </li>

@@ -40,8 +40,10 @@ Route::get('/', function () {
 
 
     Route::get('avg_invoice_status', '\App\Modules\Report\ReportController@avg_invoice_status')->name('avg_invoice_status');
+    Route::get('avg_invoice_status_french', '\App\Modules\Report\ReportController@avg_invoice_status_french')->name('avg_invoice_status_french');
     Route::get('count_invoice_status', '\App\Modules\Report\ReportController@count_invoice_status')->name('count_invoice_status');
     Route::get('indicators', '\App\Modules\Indicators\IndicatorsController@index')->name('indicators.index');
+    Route::get('indicators_french', '\App\Modules\Indicators\IndicatorsController@index_french')->name('indicators.index_french');
 
     Route::get('/import', '\App\Modules\Import\ImportController@index')->name('import.index');
     Route::post('/import', '\App\Modules\Import\ImportController@store')->name('import.store');

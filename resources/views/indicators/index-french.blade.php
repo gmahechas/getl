@@ -2,8 +2,8 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-            <h2>Indicadores</h2>
-            @include('indicators.search-form')
+            <h2>Indicateurs</h2>
+            @include('indicators.search-form-french')
             <hr />
             <div class="row">
                 <div class="col-8">
@@ -14,105 +14,105 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th>#</th>
-                                    <th>Indicador</th>
-                                    <th>Facturas</th>
-                                    <th>% Dias</th>
+                                    <th>Indicateur</th>
+                                    <th>Nombre des factures traitées</th>
+                                    <th>Moyenne (jours)</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>1</td>
-                                    <td>Total de las facturas recibidas en el periodo:</td>
+                                    <td>Nb des factures reçues dans la periode (Q):</td>
                                     <td>{{ $indicator_1['result'][0]->count_invoices }}</td>
                                     <td>&nbsp;</td>
                                 </tr>
                                 <tr>
                                     <td>2</td>
-                                    <td>Total de las facturas pagadas en el periodo:</td>
+                                    <td>Nb de factures payées dans la periode (Q):</td>
                                     <td>{{ $indicator_2['result'][0]->count_invoices }}</td>
                                     <td>&nbsp;</td>
                                 </tr>
                                 <tr>
                                     <td>3</td>
-                                    <td>Total de las facturas pagadas en el periodo > a 30 dias:</td>
+                                    <td>Nb de factures payées > 30 jours dans la periode (Q):</td>
                                     <td>{{ $indicator_3['result'][0]->count_invoices }}</td>
                                     <td>&nbsp;</td>
                                 </tr>
                                 <tr>
                                     <td>4</td>
-                                    <td>Total de facturas pagadas en el periodo < = 30 dias:</td>
+                                    <td>Nb de factures payées <= 30 jours dans la periode (Q):</td>
                                     <td>{{ $indicator_4['result'][0]->count_invoices }}</td>
                                     <td>&nbsp;</td>
                                 </tr>
                                 <tr>
                                     <td>5</td>
-                                    <td>% Total de las facturas pagadas con respecto a las facturas recibidas en el mismo periodo:</td>
+                                    <td>% des factures payées dans la periode par rapport aux TFRP:</td>
                                     <td>{{ number_format($indicator_2['result'][0]->count_invoices / $indicator_1['result'][0]->count_invoices, 2) }}</td>
                                     <td>&nbsp;</td>
                                 </tr>
                                 <tr>
                                     <td>6</td>
-                                    <td>% de facturas pagadas > 30 dias con respecto al total de facturas recibidas en el mismo periodo:</td>
+                                    <td>% des factures payées > 30 jours par rapport au TFRP:</td>
                                     <td>{{ number_format($indicator_3['result'][0]->count_invoices / $indicator_1['result'][0]->count_invoices, 2) }}</td>
                                     <td>&nbsp;</td>
                                 </tr>
                                 <tr>
                                     <td>7</td>
-                                    <td>% de facturas pagadas < = 30 dias con respecto al total de facturas recibidas en el mismo periodo:</td>
+                                    <td>% des factures payées <= 30 jours par rapport au TFRP:</td>
                                     <td>{{ number_format($indicator_4['result'][0]->count_invoices / $indicator_1['result'][0]->count_invoices, 2) }}</td>
                                     <td>&nbsp;</td>
                                 </tr>
                                 <tr>
                                     <td>8</td>
-                                    <td>% de facturas pagadas > 30 dias con respecto al total de facturas pagadas del mismo periodo:</td>
+                                    <td>% Total des factures payées dans la periode > 30 jours par rapport au NFPP:</td>
                                     <td>{{ number_format($indicator_3['result'][0]->count_invoices / $indicator_2['result'][0]->count_invoices, 2) }}</td>
                                     <td>&nbsp;</td>
                                 </tr>
                                 <tr>
                                     <td>9</td>
-                                    <td>% de facturas pagadas <= 30 dias con respecto al total de facturas pagadas del mismo periodo:</td>
+                                    <td>% des factures payées dans la periode <= 30 jours per rapport au NFPP:</td>
                                     <td>{{ number_format($indicator_4['result'][0]->count_invoices / $indicator_2['result'][0]->count_invoices, 2) }}</td>
                                     <td>&nbsp;</td>
                                 </tr>
                                 <tr>
                                     <td>10</td>
-                                    <td>Tiempo promedio de tramite de las facturas recibidas en el periodo:</td>
+                                    <td>Temps moyen de traitement des factures reçues dans la periode:</td>
                                     <td>&nbsp;</td>
                                     <td>{{ number_format($indicator_1['result'][0]->avg_duration,2) }}</td>
                                 </tr>
                                 <tr>
                                     <td>11</td>
-                                    <td>Tiempo promedio de tramite de las facturas pagadas en el periodo:</td>
+                                    <td>Temps moyen de traitement des factures payées dans la periode:</td>
                                     <td>&nbsp;</td>
                                     <td>{{ number_format($indicator_2['result'][0]->avg_duration,2) }}</td>
                                 </tr>
                                 <tr>
                                     <td>12</td>
-                                    <td>Tiempo promedio de tramite de las facturas pagadas en el periodo > a 30 dias:</td>
+                                    <td>Temps moyen de traitement des factures > 30 jours payées pendant la periode:</td>
                                     <td>&nbsp;</td>
                                     <td>{{ number_format($indicator_3['result'][0]->avg_duration,2) }}</td>
                                 </tr>
                                 <tr>
                                     <td>13</td>
-                                    <td>Tiempo promedio de tramite de las facturas pagadas en el periodo < = 30 dias:</td>
+                                    <td>Temps moyen de traitement des factures <= à 30 jours payées dans la periode:</td>
                                     <td>&nbsp;</td>
                                     <td>{{ number_format($indicator_4['result'][0]->avg_duration,2) }}</td>
                                 </tr>
                                 <tr>
                                     <td>14</td>
-                                    <td>Tiempo promedio de tratamiento de las facturas recibidas en el periodo:</td>
+                                    <td>Temps moyen de traitement des factures reçues dans la periode:</td>
                                     <td>&nbsp;</td>
                                     <td>{{ number_format($indicator_1['result'][0]->count_invoices / $indicator_1['result'][0]->avg_duration,2) }}</td>
                                 </tr>
                                 <tr>
                                     <td>15</td>
-                                    <td>Tiempo promedio de tramite de las facturas pagadas en el periodo > a 30 dias:</td>
+                                    <td>Temps moyen de traitement des factures > à 30 jours payées dans la periode:</td>
                                     <td>&nbsp;</td>
                                     <td>{{ number_format($indicator_3['result'][0]->count_invoices / $indicator_1['result'][0]->avg_duration,2) }}</td>
                                 </tr>
                                 <tr>
                                     <td>16</td>
-                                    <td>Tiempo promedio de tramite de las facturas pagadas en el periodo <= a 30 dias:</td>
+                                    <td>Temps moyen de traitement des factures < = à 30 jours payées dans la periode:</td>
                                     <td>&nbsp;</td>
                                     <td>{{ number_format($indicator_4['result'][0]->count_invoices / $indicator_1['result'][0]->avg_duration,2) }}</td>
                                 </tr>

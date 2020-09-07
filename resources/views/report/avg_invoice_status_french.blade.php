@@ -2,8 +2,8 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-            <h2>Promedio Estado Facturas</h2>
-            @include('report.search-form-avg')
+            <h2>Traitement des factures par statut</h2>
+            @include('report.search-form-avg-french')
             <hr />
             @empty($entities)
                 <div class="alert alert-warning">
@@ -15,19 +15,19 @@
                     @include('shared.table', [
                         'columns' => [
                             '1' => [
-                                'head' => 'Estado',
+                                'head' => 'Statut',
                                 'field' => 'status_description'
                             ],
                             '2' => [
-                                'head' => "Numero de Operaciones",
+                                'head' => "Nombre d'opérations",
                                 'field' => 'invoice_count_operations'
                             ],
                             '3' => [
-                                'head' => 'Numero de facturas tratadas',
+                                'head' => 'Nombre des factures traites',
                                 'field' => 'invoice_count'
                             ],
                             '4' => [
-                                'head' => 'Promedio (Dias)',
+                                'head' => 'Moyenne (jours)',
                                 'field' => 'invoice_status_date_diff'
                             ],
                         ]
@@ -36,24 +36,24 @@
                         <thead class="thead-dark">
                             <tr>
                                 <td>&nbsp;</td>
-                                <td>Valores (Q-J)</td>
+                                <td>Valeurs (Q-J)</td>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Total de operaciones en el periodo:</td>
+                                <td>Total des opérations dans la période:</td>
                                 <td>{{ $sum_invoice_count_operations }}</td>
                             </tr>
                             <tr>
-                                <td>Total de facturas tratadas en el periodo:</td>
+                                <td>Total des factures traitées dans la période:</td>
                                 <td>{{ $sum_invoice_count }}</td>
                             </tr>
                             <tr>
-                                <td>Eficiencia del proceso:</td>
+                                <td>Efficacité du processus:</td>
                                 <td>{{ number_format((($sum_invoice_count / $sum_invoice_count_operations) * 100),2) }}</td>
                             </tr>
                             <tr>
-                                <td>Tiempo promedio de tratamiento de las facturas:</td>
+                                <td>Délai moyen de traitement des factures:</td>
                                 <td>{{ $sum_invoice_status_date_diff }}</td>
                             </tr>
                         </tbody>
@@ -64,7 +64,7 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th>Responsable</th>
-                                <th>Promedio (dias)</th>
+                                <th>Moyenne (jours)</th>
                                 <th>%</th>
                             </tr>
                         </thead>

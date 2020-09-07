@@ -36,7 +36,36 @@ class IndicatorsController extends Controller
         ]);
     }
 
-    private function indicator_1_2($status_id, $invoice_status_date_start, $invoice_status_date_end) {
+    public function index_french(Request $request)
+    {
+        $data = $request->all();
+
+        $indicator_1 = [];
+        $indicator_2 = [];
+        $indicator_3 = [];
+        $indicator_4 = [];
+
+        if(count($data) != 0) {
+            $invoice_status_date_start = date('Y-m-d H:i:s', strtotime($data['invoice_status_date_start']));
+            $invoice_status_date_end = date('Y-m-d H:i:s', strtotime($data['invoice_status_date_end']));
+
+            $indicator_1 = $this->indicator_1_2(1, $invoice_status_date_start, $invoice_status_date_end); //recibidas
+            $indicator_2 = $this->indicator_1_2(10, $invoice_status_date_start, $invoice_status_date_end); //pagadas
+            $indicator_3 = $this->indicator_3_4(10, $invoice_status_date_start, $invoice_status_date_end, '>'); // mayor 30 dias
+            $indicator_4 = $this->indicator_3_4(10, $invoice_status_date_start, $invoice_status_date_end, '<='); // menor o igual 30 dias
+        }
+
+        return view('indicators.index-french')->with([
+            'data' => $data,
+            'indicator_1' => $indicator_1,
+            'indicator_2' => $indicator_2,
+            'indicator_3' => $indicator_3,
+            'indicator_4' => $indicator_4
+        ]);
+    }
+
+    private function indicator_1_2($status_id, $invoice_status_date_start, $invoice_status_date_end)
+    {
 
         $sum_invoice_status_date_diff = 0;
         $sql = 'SELECT COUNT(DISTINCT(ita.invoice_id_ref)) AS count_invoices, IFNULL(AVG(ita.duration), 0) AS avg_duration
@@ -51,7 +80,8 @@ class IndicatorsController extends Controller
 
     }
 
-    private function indicator_3_4($status_id, $invoice_status_date_start, $invoice_status_date_end, $comparation) {
+    private function indicator_3_4($status_id, $invoice_status_date_start, $invoice_status_date_end, $comparation)
+    {
 
         $sum_invoice_status_date_diff = 0;
         $sql = 'SELECT COUNT(DISTINCT(ita.invoice_id_ref)) AS count_invoices, IFNULL(AVG(ita.duration), 0) AS avg_duration

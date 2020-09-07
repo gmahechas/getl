@@ -91,6 +91,89 @@ class ReportController extends Controller
         ]);
     }
 
+    public function avg_invoice_status_french(Request $request)
+    {
+        $data = $request->all();
+        $entities = [];
+
+        $sum_invoice_status_date_diff = 0;
+        $sum_invoice_count_operations = 0;
+        $sum_invoice_count = 0;
+        $secondTable = [];
+        $tempsaSC = 0;
+        $tempsaCAP = 0;
+        $totalTemps = 0;
+        $tempsaSCPercent = 0;
+        $tempsaCAPPercent = 0;
+        $totalPercent = 0;
+        $secondTableWithPercent = [];
+
+        if(count($data) != 0) {
+
+            $invoice_status_date_start = date('Y-m-d H:i:s', strtotime($data['invoice_status_date_start']));
+            $invoice_status_date_end = date('Y-m-d H:i:s', strtotime($data['invoice_status_date_end']));
+
+            $sql_where = '';
+            $sql_where_sub_count_invoices = '';
+            if($data['invoice_status_date_start'] && $data['invoice_status_date_end']) {
+                $sql_where = ' AND ins.invoice_status_date BETWEEN "'.$invoice_status_date_start.'" AND "'.$invoice_status_date_end . '"';
+                $sql_where_sub_count_invoices = ' AND sub_ins.invoice_status_date BETWEEN "'.$invoice_status_date_start.'" AND "'.$invoice_status_date_end . '"';
+            }
+
+            $sql = 'SELECT ins.status_id AS status_id, ins.status_description AS status_description, AVG(IFNULL(ins.invoice_status_date_diff, 0)) AS invoice_status_date_diff,
+                    (SELECT COUNT(DISTINCT(sub_ins.invoice_id_ref))
+                     FROM invoice_status sub_ins
+                     WHERE sub_ins.status_id = ins.status_id '.$sql_where_sub_count_invoices.') AS  invoice_count,
+                    (SELECT COUNT(sub_ins.invoice_id_ref)
+                     FROM invoice_status sub_ins
+                     WHERE sub_ins.status_id = ins.status_id '.$sql_where_sub_count_invoices.') AS  invoice_count_operations
+                    FROM invoice_status_view ins
+                    WHERE 1=1 '.$sql_where.'
+                    GROUP BY ins.status_id
+                    ORDER BY ins.status_order';
+
+            $entities = DB::select($sql);
+
+            foreach ($entities as $key => $entity) {
+                if($entity->status_id != 10 && $entity->status_id != 11) {
+                    $sum_invoice_status_date_diff += $entity->invoice_status_date_diff;
+                }
+                $sum_invoice_count_operations += $entity->invoice_count_operations;
+                $sum_invoice_count += $entity->invoice_count;
+            }
+
+            $secondTable = $this->secondTable($entities);
+            $tempsaSC = $this->calculateTempsaSC($secondTable);
+
+
+            $indexTempsaCAP = array_search('CAP', array_column($secondTable, 'newStatus'));
+            $tempsaCAP = $secondTable[$indexTempsaCAP+1]['invoice_status_date_diff'];
+
+            $totalTemps = $tempsaSC + $tempsaCAP;
+
+            $tempsaSCPercent = ($tempsaSC / $totalTemps) * 100;
+            $tempsaCAPPercent = ($tempsaCAP / $totalTemps) * 100;
+            $totalPercent = $tempsaSCPercent + $tempsaCAPPercent;
+
+            $secondTableWithPercent = $this->calculatePercent($secondTable, $tempsaSC);
+        }
+
+        return view('report.avg_invoice_status_french')->with([
+            'entities' => $entities,
+            'data' => $data,
+            'sum_invoice_status_date_diff' => $sum_invoice_status_date_diff,
+            'sum_invoice_count_operations' => $sum_invoice_count_operations,
+            'sum_invoice_count' => $sum_invoice_count,
+            'secondTable' => $secondTableWithPercent,
+            'tempsaSC' => $tempsaSC,
+            'tempsaSCPercent' => $tempsaSCPercent,
+            'tempsaCAP' => $tempsaCAP,
+            'tempsaCAPPercent' => $tempsaCAPPercent,
+            'totalTemps' => $totalTemps,
+            'totalPercent' => $totalPercent
+        ]);
+    }
+
     public function count_invoice_status(Request $request)
     {
         $entities = DB::select('SELECT i.status_description AS status_description, COUNT(*) AS count_status_id
