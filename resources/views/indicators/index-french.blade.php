@@ -15,7 +15,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Indicateur</th>
-                                    <th>Nombre des factures traitées</th>
+                                    <th>Nombre des factures traites</th>
                                     <th>Moyenne (jours)</th>
                                 </tr>
                             </thead>
