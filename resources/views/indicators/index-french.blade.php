@@ -70,7 +70,7 @@
                                 </tr>
                                 <tr>
                                     <td>9</td>
-                                    <td>% des factures payées dans la periode <= 30 jours per rapport au NFPP:</td>
+                                    <td>% des factures payées dans la periode <= 30 jours par rapport au NFPP:</td>
                                     <td>{{ number_format($indicator_4['result'][0]->count_invoices / $indicator_2['result'][0]->count_invoices, 2) }}</td>
                                     <td>&nbsp;</td>
                                 </tr>
