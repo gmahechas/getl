@@ -1,28 +1,12 @@
-mysql.server start
-
-mysql -u root -p; //Ingresa contraseña
-
-use getl
+brew update
+brew install php@7.3
+brew link php@7.3 --force
 
 
-        CREATE OR REPLACE VIEW invoice_status_view AS
-            SELECT
-                ins.*,
-                s.status_description AS status_description,
-                s.status_order AS status_order,
-                (
-                    SELECT sins.invoice_status_date
-                    FROM invoice_status sins
-                    WHERE sins.invoice_id_ref = ins.invoice_id_ref AND sins.invoice_status_date > ins.invoice_status_date
-                    ORDER BY sins.invoice_status_date
-                    LIMIT 1
-                ) AS invoice_status_date_end,
-                ROUND((TIMESTAMPDIFF(HOUR, ins.invoice_status_date,
-                    (SELECT sins.invoice_status_date
-                    FROM invoice_status sins
-                    WHERE sins.invoice_id_ref = ins.invoice_id_ref AND sins.invoice_status_date > ins.invoice_status_date
-                    ORDER BY sins.invoice_status_date
-                    LIMIT 1)) / 24),1) AS invoice_status_date_diff
-            FROM invoice_status ins
-            JOIN status s ON s.id = ins.status_id
-            ORDER BY ins.invoice_status_date ASC;
+composer require phpoffice/phpspreadsheet
+composer require maatwebsite/excel
+
+
+php artisan vendor:publish --provider="Maatwebsite\Excel\ExcelServiceProvider"
+
+ALTER TABLE invoice CHANGE invoice_total invoice_total DECIMAL(16,2) NULL;

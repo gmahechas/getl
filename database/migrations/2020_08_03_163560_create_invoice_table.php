@@ -18,7 +18,7 @@ class CreateInvoiceTable extends Migration
             $table->bigInteger('id_ref')->unsigned();
             $table->string('invoice_number', 128);
             $table->date('invoice_date');
-            $table->decimal('invoice_total', 16, 2);
+            $table->decimal('invoice_total', 16, 2)->nullable();
 
             $table->bigInteger('contract_id')->unsigned();
             $table->foreign('contract_id')
