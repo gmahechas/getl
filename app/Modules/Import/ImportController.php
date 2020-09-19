@@ -23,17 +23,16 @@ class ImportController extends Controller
 
         switch ($import_type) {
             case 'invoice':
-                Excel::import(new InvoiceImport, $path);
+                $result = Excel::import(new InvoiceImport, $path);
                 break;
             case 'invoice_status':
-                Excel::import(new InvoiceStatusImport, $path);
+                $result = Excel::import(new InvoiceStatusImport, $path);
             break;
             default:
                 # code...
                 break;
         }
 
-
-        return $path;
+        return back()->with(['success' => "The {$import_type} records were imported"]);;
     }
 }
