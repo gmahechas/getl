@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Modules\Invoice\InvoiceImport;
+use App\Modules\Invoice\Invoice;
 use App\Modules\InvoiceStatus\InvoiceStatusImport;
+use App\Modules\InvoiceStatus\InvoiceStatus;
 
 class ImportController extends Controller
 {
@@ -23,9 +25,11 @@ class ImportController extends Controller
 
         switch ($import_type) {
             case 'invoice':
+                Invoice::query()->truncate();
                 $result = Excel::import(new InvoiceImport, $path);
                 break;
             case 'invoice_status':
+                InvoiceStatus::query()->truncate();
                 $result = Excel::import(new InvoiceStatusImport, $path);
             break;
             default:
