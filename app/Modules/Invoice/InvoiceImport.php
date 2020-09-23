@@ -16,7 +16,7 @@ class InvoiceImport implements ToModel, WithHeadingRow
     public function model(array $row)
     {
         return new Invoice([
-            'id_ref'     => $row['id'],
+            'id_ref'     => str_replace(' ', '', $row['id']),
             'invoice_number'    => $row['numero_factura'],
             'invoice_date' => Date::excelToDateTimeObject($row['fecha']),
             'invoice_total' => $row['total'],

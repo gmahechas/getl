@@ -20,7 +20,7 @@ class InvoiceStatusImport implements ToModel, WithHeadingRow
         return new InvoiceStatus([
             'invoice_status_date' => Date::excelToDateTimeObject($row['fecha'])->format('Y-m-d H:i:s'),
             'invoice_status_responsable' => $row['persona'],
-            'invoice_id_ref' => $row['id_parent'],
+            'invoice_id_ref' => str_replace(' ', '', $row['id_parent']),
             'status_id' => $this->getState(trim($row['estado']))
         ]);
     }
@@ -40,6 +40,7 @@ class InvoiceStatusImport implements ToModel, WithHeadingRow
             'Envoyée CAP' => 9,
             'Payée' => 10,
             'A supprimer' => 11,
+            'Supprimée' => 12
         ];
 
         return $state[$stringState];
