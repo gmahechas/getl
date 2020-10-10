@@ -268,4 +268,35 @@ class ReportController extends Controller
 
         return $returnArray;
     }
+
+    public function index_responsable(Request $request)
+    {
+        $data = $request->all();
+        $entities = [];
+
+        if(count($data) != 0) {
+            $invoice_status_date_start = date('Y-m-d H:i:s', strtotime($data['invoice_status_date_start']));
+            $invoice_status_date_end = date('Y-m-d H:i:s', strtotime($data['invoice_status_date_end']));
+
+            $sql = 'SELECT st.status_description, ist.status_id, ist.invoice_status_responsable, count(ist.id) as count_invoice,
+                    (
+                        SELECT AVG(sub_isv.invoice_status_date_diff)
+                        FROM invoice_status_view sub_isv
+                        WHERE sub_isv.invoice_status_date BETWEEN "'.$invoice_status_date_start.'" AND "'.$invoice_status_date_end.'"
+                        AND sub_isv.status_id = ist.status_id
+                        AND sub_isv.invoice_status_responsable = ist.invoice_status_responsable
+                    ) AS avg_invoice_status_date_diff
+                    FROM invoice_status ist
+                    JOIN status st ON st.id = ist.status_id
+                    WHERE ist.invoice_status_date BETWEEN "'.$invoice_status_date_start.'" AND "'.$invoice_status_date_end.'"
+                    GROUP BY ist.status_id, ist.invoice_status_responsable';
+
+            $entities = DB::select($sql);
+        }
+
+        return view('report.index-responsable')->with([
+            'data' => $data,
+            'entities' => $entities,
+        ]);
+    }
 }

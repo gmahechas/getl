@@ -44,6 +44,7 @@ Route::get('/', function () {
     Route::get('count_invoice_status', '\App\Modules\Report\ReportController@count_invoice_status')->name('count_invoice_status');
     Route::get('indicators', '\App\Modules\Indicators\IndicatorsController@index')->name('indicators.index');
     Route::get('indicators_french', '\App\Modules\Indicators\IndicatorsController@index_french')->name('indicators.index_french');
+    Route::get('responsable_report', '\App\Modules\Report\ReportController@index_responsable')->name('responsable_report');
 
     Route::get('/import', '\App\Modules\Import\ImportController@index')->name('import.index');
     Route::post('/import', '\App\Modules\Import\ImportController@store')->name('import.store');
