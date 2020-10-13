@@ -64,6 +64,8 @@
                                     <a class="nav-link" href="{{ route('avg_invoice_status') }}">Promedio Estados Facturas (Español)</a>
                                     <a class="nav-link" href="{{ route('avg_invoice_status_french') }}">Traitement des factures par statut (Français)</a>
                                     <div class="dropdown-divider"></div>
+                                    <a class="nav-link" href="{{ route('responsable_report') }}">Facturas por Responsable</a>
+                                    <div class="dropdown-divider"></div>
                                     <a class="nav-link" href="{{ route('count_invoice_status') }}">Numero Facturas por Estado</a>
                                 </div>
                             </li>
