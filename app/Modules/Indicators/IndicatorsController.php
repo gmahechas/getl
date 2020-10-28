@@ -64,6 +64,90 @@ class IndicatorsController extends Controller
         ]);
     }
 
+    public function index_by_months(Request $request)
+    {
+        $data = $request->all();
+
+        // echo var_dump(isset($data['months']));
+
+        $result = [];
+
+        if(count($data) != 0 && isset($data['months'])) {
+
+            foreach ($data['months'] as $month) {
+
+                $indicator_1 = [];
+                $indicator_2 = [];
+                $indicator_3 = [];
+                $indicator_4 = [];
+
+                $date = $data['year'].'-'.$month.'-01';
+                $last_day = date('t', strtotime($date));
+
+                $month_name = date('M', strtotime($date));
+                $start_date = $date . ' 00:00';
+                $end_date = $data['year'].'-'.$month.'-'.$last_day . ' 23:00';
+
+                $result[] = [
+                    'month_name' => $month_name,
+                    'indicator_1' => $this->indicator_1_2(1, $start_date, $end_date), //recibidas
+                    'indicator_2' => $this->indicator_1_2(10, $start_date, $end_date), //pagadas
+                    'indicator_3' => $this->indicator_3_4(10, $start_date, $end_date, '>'), // mayor 30 dias
+                    'indicator_4' => $this->indicator_3_4(10, $start_date, $end_date, '<='), // menor o igual 30 dias
+                ];
+
+            }
+
+        }
+
+        return view('indicators.index-by-months')->with([
+            'data' => $data,
+            'result' => $result
+        ]);
+    }
+
+    public function index_by_months_french(Request $request)
+    {
+        $data = $request->all();
+
+        // echo var_dump(isset($data['months']));
+
+        $result = [];
+
+        if(count($data) != 0 && isset($data['months'])) {
+
+            foreach ($data['months'] as $month) {
+
+                $indicator_1 = [];
+                $indicator_2 = [];
+                $indicator_3 = [];
+                $indicator_4 = [];
+
+                $date = $data['year'].'-'.$month.'-01';
+                $last_day = date('t', strtotime($date));
+
+                $month_name = date('M', strtotime($date));
+                $start_date = $date . ' 00:00';
+                $end_date = $data['year'].'-'.$month.'-'.$last_day . ' 23:00';
+
+                $result[] = [
+                    'month_name' => $month_name,
+                    'indicator_1' => $this->indicator_1_2(1, $start_date, $end_date), //recibidas
+                    'indicator_2' => $this->indicator_1_2(10, $start_date, $end_date), //pagadas
+                    'indicator_3' => $this->indicator_3_4(10, $start_date, $end_date, '>'), // mayor 30 dias
+                    'indicator_4' => $this->indicator_3_4(10, $start_date, $end_date, '<='), // menor o igual 30 dias
+                ];
+
+            }
+
+        }
+
+        return view('indicators.index-by-months-french')->with([
+            'data' => $data,
+            'result' => $result
+        ]);
+    }
+
     private function indicator_1_2($status_id, $invoice_status_date_start, $invoice_status_date_end)
     {
 
