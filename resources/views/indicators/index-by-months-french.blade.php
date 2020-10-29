@@ -193,7 +193,7 @@
                         <table class="table table-sm table-bordered table-hover">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th>Promedio</th>
+                                    <th>Moyenne</th>
                                 </tr>
                             </thead>
                             <tbody>
