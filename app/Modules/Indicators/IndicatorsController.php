@@ -102,7 +102,8 @@ class IndicatorsController extends Controller
 
         return view('indicators.index-by-months')->with([
             'data' => $data,
-            'result' => $result
+            'result' => $result,
+            'num_of_months' => count($data['months'])
         ]);
     }
 
@@ -144,7 +145,8 @@ class IndicatorsController extends Controller
 
         return view('indicators.index-by-months-french')->with([
             'data' => $data,
-            'result' => $result
+            'result' => $result,
+            'num_of_months' => count($data['months'])
         ]);
     }
 
