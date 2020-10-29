@@ -87,6 +87,10 @@
                         </table>
                     @endempty
                 </div>
+                @empty($result)
+
+                @else
+
                 @php
                     $sum1 = 0;
                     $sum2 = 0;
@@ -245,6 +249,8 @@
                         </tbody>
                     </table>
                 </div>
+
+                @endempty
             </div>
         </div>
     </div>

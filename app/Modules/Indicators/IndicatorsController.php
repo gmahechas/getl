@@ -68,12 +68,11 @@ class IndicatorsController extends Controller
     {
         $data = $request->all();
 
-        // echo var_dump(isset($data['months']));
-
         $result = [];
+        $num_of_months = 0;
 
         if(count($data) != 0 && isset($data['months'])) {
-
+            $num_of_months = count($data['months']);
             foreach ($data['months'] as $month) {
 
                 $indicator_1 = [];
@@ -103,7 +102,7 @@ class IndicatorsController extends Controller
         return view('indicators.index-by-months')->with([
             'data' => $data,
             'result' => $result,
-            'num_of_months' => count($data['months'])
+            'num_of_months' => $num_of_months
         ]);
     }
 
@@ -114,9 +113,10 @@ class IndicatorsController extends Controller
         // echo var_dump(isset($data['months']));
 
         $result = [];
+        $num_of_months = 0;
 
         if(count($data) != 0 && isset($data['months'])) {
-
+            $num_of_months = count($data['months']);
             foreach ($data['months'] as $month) {
 
                 $indicator_1 = [];
@@ -146,7 +146,7 @@ class IndicatorsController extends Controller
         return view('indicators.index-by-months-french')->with([
             'data' => $data,
             'result' => $result,
-            'num_of_months' => count($data['months'])
+            'num_of_months' => $num_of_months
         ]);
     }
 
