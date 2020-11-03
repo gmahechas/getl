@@ -104,7 +104,7 @@
                                     <td>&nbsp;</td>
                                     <td>{{ number_format($indicator_1['result'][0]->count_invoices / $indicator_1['result'][0]->avg_duration,2) }}</td>
                                 </tr>
-                                <tr>
+{{--                                 <tr>
                                     <td>15</td>
                                     <td>Temps moyen de traitement des factures > à 30 jours payées dans la periode:</td>
                                     <td>&nbsp;</td>
@@ -115,7 +115,7 @@
                                     <td>Temps moyen de traitement des factures < = à 30 jours payées dans la periode:</td>
                                     <td>&nbsp;</td>
                                     <td>{{ number_format($indicator_4['result'][0]->count_invoices / $indicator_1['result'][0]->avg_duration,2) }}</td>
-                                </tr>
+                                </tr> --}}
                             </tbody>
                         </table>
                     @endempty

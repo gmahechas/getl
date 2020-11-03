@@ -74,7 +74,7 @@
                                     <td>14</td>
                                     <td>Tiempo promedio de tratamiento de las facturas recibidas en el periodo:</td>
                                 </tr>
-                                <tr>
+{{--                                 <tr>
                                     <td>15</td>
                                     <td>Tiempo promedio de tramite de las facturas pagadas en el periodo > a 30 dias:</td>
 
@@ -82,7 +82,7 @@
                                 <tr>
                                     <td>16</td>
                                     <td>Tiempo promedio de tramite de las facturas pagadas en el periodo <= a 30 dias:</td>
-                                </tr>
+                                </tr> --}}
                             </tbody>
                         </table>
                     @endempty
@@ -179,12 +179,12 @@
                                     <tr>
                                         <td>{{ number_format($month_result['indicator_1']['result'][0]->count_invoices / $month_result['indicator_1']['result'][0]->avg_duration,2) }}</td>
                                     </tr>
-                                    <tr>
+{{--                                     <tr>
                                         <td>{{ number_format($month_result['indicator_3']['result'][0]->count_invoices / $month_result['indicator_1']['result'][0]->avg_duration,2) }}</td>
                                     </tr>
                                     <tr>
                                         <td>{{ number_format($month_result['indicator_4']['result'][0]->count_invoices / $month_result['indicator_1']['result'][0]->avg_duration,2) }}</td>
-                                    </tr>
+                                    </tr> --}}
                                 </tbody>
                             </table>
                         </div>
@@ -239,12 +239,12 @@
                                 <tr>
                                     <td>{!! number_format($sum14 / $num_of_months, 2) !!}</td>
                                 </tr>
-                                <tr>
+{{--                                 <tr>
                                     <td>{!! number_format($sum15 / $num_of_months, 2) !!}</td>
                                 </tr>
                                 <tr>
                                     <td>{!! number_format($sum16 / $num_of_months, 2) !!}</td>
-                                </tr>
+                                </tr> --}}
                             </tbody>
                         </table>
                     </div>
