@@ -30,26 +30,7 @@ class ReportController extends Controller
             $invoice_status_date_start = date('Y-m-d H:i:s', strtotime($data['invoice_status_date_start']));
             $invoice_status_date_end = date('Y-m-d H:i:s', strtotime($data['invoice_status_date_end']));
 
-            $sql_where = '';
-            $sql_where_sub_count_invoices = '';
-            if($data['invoice_status_date_start'] && $data['invoice_status_date_end']) {
-                $sql_where = ' AND ins.invoice_status_date BETWEEN "'.$invoice_status_date_start.'" AND "'.$invoice_status_date_end . '"';
-                $sql_where_sub_count_invoices = ' AND sub_ins.invoice_status_date BETWEEN "'.$invoice_status_date_start.'" AND "'.$invoice_status_date_end . '"';
-            }
-
-            $sql = 'SELECT ins.status_id AS status_id, ins.status_description AS status_description, AVG(IFNULL(ins.invoice_status_date_diff, 0)) AS invoice_status_date_diff,
-                    (SELECT COUNT(DISTINCT(sub_ins.invoice_id_ref))
-                     FROM invoice_status sub_ins
-                     WHERE sub_ins.status_id = ins.status_id '.$sql_where_sub_count_invoices.') AS  invoice_count,
-                    (SELECT COUNT(sub_ins.invoice_id_ref)
-                     FROM invoice_status sub_ins
-                     WHERE sub_ins.status_id = ins.status_id '.$sql_where_sub_count_invoices.') AS  invoice_count_operations
-                    FROM invoice_status_view ins
-                    WHERE 1=1 '.$sql_where.'
-                    GROUP BY ins.status_id
-                    ORDER BY ins.status_order';
-
-            $entities = DB::select($sql);
+            $entities  = $this->search_avg($invoice_status_date_start, $invoice_status_date_end);
 
             foreach ($entities as $key => $entity) {
                 if($entity->status_id != 10 && $entity->status_id != 11) {
@@ -113,26 +94,7 @@ class ReportController extends Controller
             $invoice_status_date_start = date('Y-m-d H:i:s', strtotime($data['invoice_status_date_start']));
             $invoice_status_date_end = date('Y-m-d H:i:s', strtotime($data['invoice_status_date_end']));
 
-            $sql_where = '';
-            $sql_where_sub_count_invoices = '';
-            if($data['invoice_status_date_start'] && $data['invoice_status_date_end']) {
-                $sql_where = ' AND ins.invoice_status_date BETWEEN "'.$invoice_status_date_start.'" AND "'.$invoice_status_date_end . '"';
-                $sql_where_sub_count_invoices = ' AND sub_ins.invoice_status_date BETWEEN "'.$invoice_status_date_start.'" AND "'.$invoice_status_date_end . '"';
-            }
-
-            $sql = 'SELECT ins.status_id AS status_id, ins.status_description AS status_description, AVG(IFNULL(ins.invoice_status_date_diff, 0)) AS invoice_status_date_diff,
-                    (SELECT COUNT(DISTINCT(sub_ins.invoice_id_ref))
-                     FROM invoice_status sub_ins
-                     WHERE sub_ins.status_id = ins.status_id '.$sql_where_sub_count_invoices.') AS  invoice_count,
-                    (SELECT COUNT(sub_ins.invoice_id_ref)
-                     FROM invoice_status sub_ins
-                     WHERE sub_ins.status_id = ins.status_id '.$sql_where_sub_count_invoices.') AS  invoice_count_operations
-                    FROM invoice_status_view ins
-                    WHERE 1=1 '.$sql_where.'
-                    GROUP BY ins.status_id
-                    ORDER BY ins.status_order';
-
-            $entities = DB::select($sql);
+            $entities  = $this->search_avg($invoice_status_date_start, $invoice_status_date_end);
 
             foreach ($entities as $key => $entity) {
                 if($entity->status_id != 10 && $entity->status_id != 11) {
@@ -172,6 +134,30 @@ class ReportController extends Controller
             'totalTemps' => $totalTemps,
             'totalPercent' => $totalPercent
         ]);
+    }
+
+    public function search_avg($invoice_status_date_start, $invoice_status_date_end)
+    {
+        $sql_where = '';
+        $sql_where_sub_count_invoices = '';
+        if($invoice_status_date_start && $invoice_status_date_end) {
+            $sql_where = ' AND ins.invoice_status_date BETWEEN "'.$invoice_status_date_start.'" AND "'.$invoice_status_date_end . '"';
+            $sql_where_sub_count_invoices = ' AND sub_ins.invoice_status_date BETWEEN "'.$invoice_status_date_start.'" AND "'.$invoice_status_date_end . '"';
+        }
+
+        $sql = 'SELECT ins.status_id AS status_id, ins.status_description AS status_description, AVG(IFNULL(ins.invoice_status_date_diff, 0)) AS invoice_status_date_diff,
+                (SELECT COUNT(DISTINCT(sub_ins.invoice_id_ref))
+                 FROM invoice_status sub_ins
+                 WHERE sub_ins.status_id = ins.status_id '.$sql_where_sub_count_invoices.') AS  invoice_count,
+                (SELECT COUNT(sub_ins.invoice_id_ref)
+                 FROM invoice_status sub_ins
+                 WHERE sub_ins.status_id = ins.status_id '.$sql_where_sub_count_invoices.') AS  invoice_count_operations
+                FROM invoice_status_view ins
+                WHERE 1=1 '.$sql_where.'
+                GROUP BY ins.status_id
+                ORDER BY ins.status_order';
+
+        return $entities = DB::select($sql);
     }
 
     public function count_invoice_status(Request $request)
