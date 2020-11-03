@@ -172,7 +172,7 @@ class ReportController extends Controller
         ]);;
     }
 
-    private function secondTable($entities)
+    public function secondTable($entities)
     {
 
         $newEntities = [];
@@ -223,7 +223,7 @@ class ReportController extends Controller
         return $newArray;
     }
 
-    private function calculateTempsaSC($invoice_status)
+    public function calculateTempsaSC($invoice_status)
     {
 
         $pivots = [1,2,3,4];
@@ -239,7 +239,7 @@ class ReportController extends Controller
         return $sum;
     }
 
-    private function calculatePercent($invoice_status, $tempsaSC)
+    public function calculatePercent($invoice_status, $tempsaSC)
     {
 
         $pivots = [1,2,3,4,5];

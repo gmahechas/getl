@@ -248,9 +248,146 @@
                             </tbody>
                         </table>
                     </div>
-
                 @endempty
             </div>
+
+            <div class="row no-gutters">
+                <div class="col-5">
+                    @empty($result)
+
+                    @else
+                        <table class="table table-sm table-bordered table-hover">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Indicador</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>19</td>
+                                    <td>Agent 1:</td>
+                                </tr>
+                                <tr>
+                                    <td>20:</td>
+                                    <td>CP:</td>
+                                </tr>
+                                <tr>
+                                    <td>21</td>
+                                    <td>Autorisée CSC:</td>
+                                </tr>
+                                <tr>
+                                    <td>22</td>
+                                    <td>Agent 2:</td>
+                                </tr>
+                                <tr>
+                                    <td>23</td>
+                                    <td>CAP:</td>
+                                </tr>
+                                <tr>
+                                    <td>24</td>
+                                    <td>Temps à SC (jours):</td>
+                                </tr>
+                                <tr>
+                                    <td>25</td>
+                                    <td>Temps à CAP (jours):</td>
+                                </tr>
+                                <tr>
+                                    <td>26</td>
+                                    <td>Total Temps à payée (jours):</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    @endempty
+                </div>
+                @empty($result)
+
+                @else
+                    @php
+                        $sum19 = 0;
+                        $sum20 = 0;
+                        $sum21 = 0;
+                        $sum22 = 0;
+                        $sum23 = 0;
+                        $sum24 = 0;
+                        $sum25 = 0;
+                        $sum26 = 0;
+                    @endphp
+                    @foreach ($result as $month_result)
+                        @php
+                            $sum19 += $month_result['secondTable']['secondTableFirstPart'][0]['invoice_status_date_diff'];
+                            $sum20 += $month_result['secondTable']['secondTableFirstPart'][1]['invoice_status_date_diff'];
+                            $sum21 += $month_result['secondTable']['secondTableFirstPart'][2]['invoice_status_date_diff'];
+                            $sum22 += $month_result['secondTable']['secondTableFirstPart'][3]['invoice_status_date_diff'];
+                            $sum23 += $month_result['secondTable']['secondTableFirstPart'][4]['invoice_status_date_diff'];
+                            $sum24 += $month_result['secondTable']['tempsaSC'];
+                            $sum25 += $month_result['secondTable']['tempsaCAP'];
+                            $sum26 += $month_result['secondTable']['totalTemps'];
+                        @endphp
+                        <div class="col-1">
+                            <table class="table table-sm table-bordered table-hover">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>{{ $month_result['month_name'] }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($month_result['secondTable']['secondTableFirstPart'] as $key => $entity)
+                                        <tr>
+                                            <td>{{ number_format($entity['invoice_status_date_diff'], 2) }}</td>
+                                        </tr>
+                                    @endforeach
+                                    <tr>
+                                        <td>{{ $month_result['secondTable']['tempsaSC'] }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{ $month_result['secondTable']['tempsaCAP'] }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{ $month_result['secondTable']['totalTemps'] }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    @endforeach
+                    <div class="col-1">
+                        <table class="table table-sm table-bordered table-hover">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Promedio</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{!! number_format($sum19 / $num_of_months, 2) !!}</td>
+                                </tr>
+                                <tr>
+                                    <td>{!! number_format($sum20 / $num_of_months, 2) !!}</td>
+                                </tr>
+                                <tr>
+                                    <td>{!! number_format($sum21 / $num_of_months, 2) !!}</td>
+                                </tr>
+                                <tr>
+                                    <td>{!! number_format($sum22 / $num_of_months, 2) !!}</td>
+                                </tr>
+                                <tr>
+                                    <td>{!! number_format($sum23 / $num_of_months, 2) !!}</td>
+                                </tr>
+                                <tr>
+                                    <td>{!! number_format($sum24 / $num_of_months, 2) !!}</td>
+                                </tr>
+                                <tr>
+                                    <td>{!! number_format($sum25 / $num_of_months, 2) !!}</td>
+                                </tr>
+                                <tr>
+                                    <td>{!! number_format($sum26 / $num_of_months, 2) !!}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                @endempty
+            </div>
+
         </div>
     </div>
 @endsection
