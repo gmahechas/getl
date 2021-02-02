@@ -20,6 +20,8 @@ class CreateInvoiceTable extends Migration
             $table->date('invoice_date');
             $table->decimal('invoice_total', 16, 2)->nullable();
 
+            $table->index(['id_ref']);
+
             $table->bigInteger('contract_id')->unsigned();
             $table->foreign('contract_id')
                 ->references('id')
