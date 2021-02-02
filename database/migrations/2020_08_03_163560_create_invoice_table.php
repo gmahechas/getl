@@ -19,6 +19,7 @@ class CreateInvoiceTable extends Migration
             $table->string('invoice_number', 128);
             $table->date('invoice_date');
             $table->decimal('invoice_total', 16, 2)->nullable();
+            $table->boolean('payee_status');
 
             $table->index(['id_ref']);
 
