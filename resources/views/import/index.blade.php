@@ -14,6 +14,7 @@
                             <select name="import_type" class="form-control">
                                 <option value="invoice">Facturas</option>
                                 <option value="invoice_status">Estados Facturas</option>
+                                <option value="invoice_payee">Estados Payee Facturas</option>
                             </select>
                         </div>
                         <div class="form-row">

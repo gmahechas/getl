@@ -9,6 +9,7 @@ use App\Modules\Invoice\InvoiceImport;
 use App\Modules\Invoice\Invoice;
 use App\Modules\InvoiceStatus\InvoiceStatusImport;
 use App\Modules\InvoiceStatus\InvoiceStatus;
+use App\Modules\InvoiceStatus\InvoiceStatusPayeeImport;
 
 class ImportController extends Controller
 {
@@ -31,7 +32,10 @@ class ImportController extends Controller
             case 'invoice_status':
                 InvoiceStatus::query()->truncate();
                 $result = Excel::import(new InvoiceStatusImport, $path);
-            break;
+              break;
+            case 'invoice_payee':
+                $result = Excel::import(new InvoiceStatusPayeeImport, $path);
+              break;
             default:
                 # code...
                 break;

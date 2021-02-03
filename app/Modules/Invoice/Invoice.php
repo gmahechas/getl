@@ -13,6 +13,7 @@ class Invoice extends Model
         'invoice_number',
         'invoice_date',
         'invoice_total',
+        'payee_status',
         'contract_id'
     ];
 }

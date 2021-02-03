@@ -37,6 +37,16 @@
                     </select>
                 </div>
             </div>
+            <div class="col-2">
+                <div class="form-row">
+                  <label>Actualizacion Estado Payee</label>
+                    <select name="payee_status" class="form-control"> 
+                      <option value="" {{ (isset($data['payee_status'])) ? ($data['payee_status'] === '') ? 'selected' : '' : '' }}>-----</option>
+                      <option value="yes" {{ (isset($data['payee_status'])) ? ($data['payee_status'] === 'yes') ? 'selected' : '' : '' }}>Facturas con estado Payee Actualizado</option>
+                      <option value="no"  {{ (isset($data['payee_status'])) ? ($data['payee_status'] === 'no') ? 'selected' : '' : '' }}>Facturas con estado Payee NO Actualizado</option>
+                    </select>
+                </div>
+            </div>
             <div class="col-1">
                 <label>&nbsp;</label>
                 <button type="submit" class="form-control btn btn-primary">Buscar</button>
