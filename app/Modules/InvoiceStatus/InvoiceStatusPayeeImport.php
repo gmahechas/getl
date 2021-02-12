@@ -35,11 +35,7 @@ class InvoiceStatusPayeeImport implements ToModel, WithHeadingRow
             }
           }
 
-        } else {
-          echo 'No Encontrada';
         }
-        
-        echo '<hr />';
     }
 
     private function getState($stringState)
