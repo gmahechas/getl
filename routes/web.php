@@ -47,6 +47,7 @@ Route::get('/', function () {
     Route::get('indicators_by_months', '\App\Modules\Indicators\IndicatorsController@index_by_months')->name('indicators_by_months');
     Route::get('indicators_by_months_french', '\App\Modules\Indicators\IndicatorsController@index_by_months_french')->name('indicators_by_months_french');
     Route::get('responsable_report', '\App\Modules\Report\ReportController@index_responsable')->name('responsable_report');
+    Route::get('cap_report', '\App\Modules\Report\ReportController@cap_report')->name('cap_report');
 
     Route::get('/import', '\App\Modules\Import\ImportController@index')->name('import.index');
     Route::post('/import', '\App\Modules\Import\ImportController@store')->name('import.store');

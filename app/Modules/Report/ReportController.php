@@ -285,4 +285,40 @@ class ReportController extends Controller
             'entities' => $entities,
         ]);
     }
+
+    public function cap_report(Request $request) {
+        $data = $request->all();
+        $entities = [];
+        $total = 0;
+
+        if(count($data) != 0) {
+            $invoice_status_date_start = date('Y-m-d H:i:s', strtotime($data['invoice_status_date_start']));
+            $invoice_status_date_end = date('Y-m-d H:i:s', strtotime($data['invoice_status_date_end']));
+
+            $sql_where = '';
+            if($invoice_status_date_start && $invoice_status_date_end) {
+                $sql_where = ' and sub.invoice_status_date between "'.$invoice_status_date_start.'" and "'.$invoice_status_date_end . '"';
+            }
+            
+            $sql = "select status_id AS status_id, status_description AS status_description, AVG(IFNULL(invoice_status_date_diff, 0)) AS invoice_status_date_diff
+                    from invoice_status_view
+                    where invoice_id_ref in (select distinct sub.invoice_id_ref
+                    from invoice_status sub
+                    where sub.status_id = 9 $sql_where)
+                    group by status_id
+                    order by status_order";
+
+            $entities = DB::select($sql);
+            $xtotal = DB::select("select count(distinct sub.invoice_id_ref) as total
+                                from invoice_status sub
+                                where sub.status_id = 9 $sql_where");
+            $total = $xtotal[0]->total;
+        }
+
+        return view('report.cap_report')->with([
+            'data' => $data,
+            'entities' => $entities,
+            'total' => $total
+        ]);
+    }
 }
