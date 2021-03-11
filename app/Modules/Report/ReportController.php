@@ -290,6 +290,7 @@ class ReportController extends Controller
         $data = $request->all();
         $entities = [];
         $total = 0;
+        $total_traitement = 0;
 
         if(count($data) != 0) {
             $invoice_status_date_start = date('Y-m-d H:i:s', strtotime($data['invoice_status_date_start']));
