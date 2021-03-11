@@ -312,13 +312,25 @@ class ReportController extends Controller
             $xtotal = DB::select("select count(distinct sub.invoice_id_ref) as total
                                 from invoice_status sub
                                 where sub.status_id = 9 $sql_where");
+            // echo '<pre>' . print_r($entities, true) . '</pre>';
+
+            $total_traitement = 
+                $entities[0]->invoice_status_date_diff +
+                $entities[1]->invoice_status_date_diff +
+                $entities[2]->invoice_status_date_diff +
+                $entities[3]->invoice_status_date_diff +
+                $entities[4]->invoice_status_date_diff +
+                $entities[5]->invoice_status_date_diff +
+                $entities[6]->invoice_status_date_diff +
+                $entities[7]->invoice_status_date_diff;
             $total = $xtotal[0]->total;
         }
 
         return view('report.cap_report')->with([
             'data' => $data,
             'entities' => $entities,
-            'total' => $total
+            'total' => $total,
+            'total_traitement' => $total_traitement
         ]);
     }
 }

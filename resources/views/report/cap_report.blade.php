@@ -27,6 +27,9 @@
                         <br />
                         <h3>Total de facturas: {{ $total }}</h3>
                     </div>
+                    <div class="col-5">
+                        <h3>Total temps traitement a SC: {{ $total_traitement }}</h3>
+                    </div>
                 </div>
             @endempty
         </div>
