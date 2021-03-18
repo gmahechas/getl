@@ -26,11 +26,11 @@ class ImportController extends Controller
 
         switch ($import_type) {
             case 'invoice':
-                //Invoice::query()->truncate();
+                Invoice::query()->truncate();
                 $result = Excel::import(new InvoiceImport, $path);
                 break;
             case 'invoice_status':
-                //InvoiceStatus::query()->truncate();
+                InvoiceStatus::query()->truncate();
                 $result = Excel::import(new InvoiceStatusImport, $path);
               break;
             case 'invoice_payee':
